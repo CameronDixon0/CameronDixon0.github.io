@@ -89,6 +89,8 @@ body {
     font-family: 'Titillium Web', sans-serif;
     color: white;
     font-size: 2vw;
+    position: relative;
+    left: 1vw;
 }
 
 #projects {
@@ -96,16 +98,25 @@ body {
     top: 50vw;
     left: -100vw;
 }
-#projects-box {
+#projects-box1 {
+    color: white;
+    left: -50vw;
+    width: 60vw;
+    background: #2a4158;
+    height: 40vh;
+    border-radius: 5px;
+    position: absolute;
+    top: 3.5vw;
+}
+#projects-box2 {
     color: white;
     left: -100vw;
     width: 60vw;
     background: #2a4158;
-    height: 79vh;
     border-radius: 5px;
-    position: relative;
-    top: 1vw;
-    left: 0;
+    position: absolute;
+    top: 25vw;
+    height: 40vh;
 }
 
 .project-title {
@@ -151,12 +162,40 @@ body {
 
 #example-project3 {
     left: .5vw;
-    top: 22vw;
+    top: .5vw;
     width: 33vw;
 }
 
 #example-project4 {
     left: 34vw;
-    top: 22vw;
+    top: .5vw;
     width: 25.5vw;
+}
+
+#about-band {
+    position: absolute;
+    top: 110vw;
+    width: 100%;
+    background: #597387;
+    height: 30vw;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+}
+
+#about-word {
+    color: white;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 2.5vw;
+    position: relative;
+    left: 10vw;
+}
+
+#about-text {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2vw;
+    position: relative;
+    left: 30vw;
+    width: 40vw;
 }
