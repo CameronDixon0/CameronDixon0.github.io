@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&family=Open+Sans:wght@300&family=Titillium+Web:wght@900&display=swap');
+
+body {
+    background: #22272c;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+#title {
+    position: absolute;
+    top: 10vw;
+    left: 20vw;
+}
+
+#name {
+    font-family: 'Titillium Web', sans-serif;
+    color: white;
+    font-size: 6vw;
+    margin: 0;
+}
+
+#desc {
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 2vw;
+    position: relative;
+    bottom: 1vw;
+    margin: 0;
+}
+
+#top {
+    width: 4vw;
+    height: 4vw;
+    position: fixed;
+    top: 88vh;
+    right: 2vw;
+    cursor: pointer;
+    display: none;
+    transition: 1s;
+    opacity: 1;
+}
+
+.about-button {
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    font-size: 2vw;
+    top: 13vw;
+    width: 10vw;
+    height: fit-content;
+    background: #2a4158;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    transition: 0.5s;
+    box-sizing: border-box;
+}
+
+#about-me {
+    left: 0;
+}
+#my-skills {
+    left: 13vw;
+}
+
+.about-button:hover {
+    background-color: #597387;
+    border: 5px solid #597387;
+}
+
+#l {
+    position: absolute;
+    top: 1000vw;
+}
+
+#scroll {
+    position: absolute;
+    height: 3vw;
+    bottom: 0px;
+    display: block;
+}
+
+#word-proj {
+    font-family: 'Titillium Web', sans-serif;
+    color: white;
+    font-size: 2vw;
+}
+
+#projects {
+    position: absolute;
+    top: 50vw;
+    left: -100vw;
+}
+#projects-box {
+    color: white;
+    left: -100vw;
+    width: 60vw;
+    background: #2a4158;
+    height: 79vh;
+    border-radius: 5px;
+    position: relative;
+    top: 1vw;
+    left: 0;
+}
+
+.project-title {
+    font-size: 1.5vw;
+}
+.project-desc {
+    position: absolute;
+    bottom: 0;
+    font-size: .75vw;
+}
+
+#projects-band {
+    position: absolute;
+    top: 50vw;
+    left: 0vw;
+    width: 100vw;
+    height: 50vw;
+    background: #2a4158;
+    opacity: 0;
+}
+
+.project {
+    background: #597387;
+    font-family: 'Open Sans', sans-serif;
+    position: absolute;
+    border-radius: 5px;
+    height: 21vw;
+    display: flex;
+    justify-content: center;
+}
+
+#example-project {
+    left: .5vw;
+    top: .5vw;
+    width: 25.5vw;
+}
+
+#example-project2 {
+    left: 26.5vw;
+    top: .5vw;
+    width: 33vw;
+}
+
+#example-project3 {
+    left: .5vw;
+    top: 22vw;
+    width: 33vw;
+}
+
+#example-project4 {
+    left: 34vw;
+    top: 22vw;
+    width: 25.5vw;
+}
