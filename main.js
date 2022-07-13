@@ -9,6 +9,10 @@ const projectsBand = document.getElementById('projects-band');
 const aboutBand = document.getElementById('about-band');
 const aboutWord = document.getElementById('about-word');
 const aboutText = document.getElementById('about-text');
+const skillsBand = document.getElementById('skills-band');
+const skillsWord = document.getElementById('skills-word');
+const skillsText1 = document.getElementById('skills-text1');
+const skillsText2 = document.getElementById('skills-text2');
 
 
 function SetScroll() {
@@ -29,13 +33,17 @@ function SetScroll() {
             projects.style.left = 20.5 + "vw";
             projectsBand.style.opacity = 1;
         }
-        if (scroll < 440)
+        if (scroll < 440) {
             projectsBox1.style.left = -50 + (scroll - 40)/8 + "vw";
+            projectsBox1.style.opacity = (scroll - 40)/350;
+        }
         else 
             projectsBox1.style.left = 0 + "vw";
 
-        if (scroll < 632)
+        if (scroll < 632) {
             projectsBox2.style.left = -100 + (scroll - 40)/6 + "vw";
+            projectsBox2.style.opacity = (scroll - 40)/550;
+        }
         else 
             projectsBox2.style.left = 0 + "vw";
     }
@@ -56,6 +64,19 @@ function SetScroll() {
         }
         if (scroll < 1400) {
             aboutText.style.left = (scroll - 825)/20 + "vw";
+        }
+    }
+
+    if (scroll > 1400) {
+        if (scroll < 1800) 
+            skillsBand.style.opacity = (scroll - 1400)/325;
+
+        if (scroll < 1650) {
+            skillsWord.style.left = (scroll - 1400)/30 + "vw";
+        }
+        if (scroll < 1950) {
+            skillsText1.style.left = (scroll - 1400)/15 + "vw";
+            skillsText2.style.left = (scroll - 1400)/10 + "vw";
         }
     }
 }
