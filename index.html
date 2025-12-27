@@ -1,3 +1,109 @@
-hi, i'm cameron
-<br>
-hire me pls
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cam Dixon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-bar">
+      <a href="#">
+        <div class="name"><u>dixon.cam</u></div>
+      </a>
+      <div class="top-links">
+        <a href="#projects"><img src="images/projects.svg"></a>
+        <a href="#education"><img src="images/school.svg" id="edu"></a>
+        <a href="#contact"><img src="images/links.svg"></a>
+      </div>
+    </div>
+    <div class="mountain">
+        <img src="images/1.svg">
+        <img src="images/2.svg">
+        <img src="images/3.svg">
+        <img src="images/4.svg">
+        <img src="images/5.svg">
+    </div>
+    <div class="content">
+      <div id="welcome">
+        <p class="hi">Hi!</p>
+        <p class="blurb">
+          I'm <b>Cameron Dixon</b>, a mathematician, software engineer, musician and surfer, studying at the University of Queensland in <b>Brisbane, Australia</b>.
+          <br>
+          <br>
+          My main interests include machine learning, pure mathematics, finance and simulations of real-world dynamics.
+          <br>
+          <br>
+          <i>Keep scrolling to find out more...</i>
+        </p>
+      </div>
+      <div id="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-display">
+          <article class="project card" onclick="window.location.href='https://github.com/CameronDixon0/NeuralNetwork'">
+            <img src="images/net.webp" alt="Project 1 screenshot" class="project-image">
+            <div class="project-body">
+              <div class="project-title">Neural Network Framework</div>
+              <br>
+              <div class="project-desc">
+                I implemented a deep neural network library from scratch in C/C++ which achieved 98% accuracy on the MNIST dataset. I designed a modular architecture allowing for flexible layer configurations and built-in training using backpropagation and SGD.
+              </div>
+            </div>
+          </article>
+          <article class="project card" onclick="window.location.href='https://github.com/CameronDixon0/MarketSim'">
+            <img src="images/binance.webp" alt="Project 2 screenshot" class="project-image">
+            <div class="project-body">
+              <div class="project-title">Trading Pair Simulator</div>
+              <br>
+              <div class="project-desc">
+                I used a Monte-Carlo approach to predict the likely path a trading pair will take. From the most recent snapshot of the Level 2 limit order book, it simulates people making random trades over a given time period. The model was evaluated on data from pairs listed on the Binance exchange. I coded the predictor in C/C++ and the evaluation in Python via <i>pybind11</i>.
+              </div>
+            </div>
+          </article>
+          <article class="project card" onclick="window.location.href='https://github.com/CameronDixon0/hex-reader.nvim'">
+            <img src="images/binary.webp" alt="Project 3 screenshot" class="project-image">
+            <div class="project-body">
+              <div class="project-title">Binary File Reader for Neovim</div>
+              <br>
+              <div class="project-desc">
+                I made a Neovim plugin in Lua for reading binary files in the terminal. When activated, it reads the file as hex characers and allows the user to hover over bytes and edit them. It also shows the value of the currently selected byte in a variety of formats (int8, uint64, float32, float64, etc.) in real time. My plugin is the first Neovim plugin to do this.
+              </div>
+            </div>
+          </article>
+          <!-- <article class="project card"> -->
+          <!--   <img src="images/project4.svg" alt="Project 4 screenshot" class="project-image"> -->
+          <!--   <div class="project-body"> -->
+          <!--     <div class="project-title">Project 4</div> -->
+          <!--     <br> -->
+          <!--     <div class="project-desc"> -->
+          <!---->
+          <!--     </div> -->
+          <!--   </div> -->
+          <!-- </article> -->
+        </div>
+      </div>
+
+      <div id="education">
+        <h2>Education</h2>
+        <p>
+          2019-2024: Palm Beach Currumbin State High School - Gold Coast, QLD
+          <br>
+          2023-2024: Queensland University of Technology - Brisbane, QLD <i>(Mathematics and Computer Science)</i>
+          <br>
+          2025-Present: University of Queensland - Brisbane, QLD <i>(Bachelor of Mathematics, Statistics & Computer Science)</i>
+        </p>
+      </div>
+
+      <div id="contact">
+        <h2>Contact</h2>
+        <p>Here's some links you might be looking for:</p>
+        <div class="contact-links">
+          <a href="mailto:hello@dixon.cam" title="Email"><img src="images/email.svg" alt="Email"></a>
+          <a href="https://github.com/CameronDixon0" target="_blank" rel="noopener noreferrer" title="GitHub"><img src="images/github.svg" alt="GitHub"></a>
+          <a href="https://linkedin.com/in/cameron-dixon-7b5786350/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><img src="images/linkedin.svg" alt="LinkedIn"></a>
+        </div>
+      </div>
+    </div>
+    <script src="main.js" defer></script>
+</body>
+</html>
