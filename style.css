@@ -130,16 +130,20 @@ body {
   max-width: 80%;
   line-height: 1.8rem;
 }
+
 #welcome .hi {
   font-size: 3rem;
   font-weight: bold;
 }
+
 #welcome .blurb {
   font-size: 1.5rem;
 }
+
 #welcome .blurb b {
   color: rgb(75, 150, 255);
 }
+
 #welcome .blurb i {
   color: rgba(255, 255, 255, 0.8);
   font-size: 1rem;
