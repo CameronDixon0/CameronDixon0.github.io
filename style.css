@@ -29,7 +29,6 @@ body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   backdrop-filter: blur(6px);
-  filter: url(#lensFilter) saturate(120%) brightness(1.15);
   border-radius: 2rem;
   background: rgba(100, 100, 100, 0.25);
   overflow: hidden;
@@ -139,11 +138,17 @@ body {
   font-size: 1.5rem;
 }
 #welcome .blurb b {
-  color: rgb(255, 100, 100);
+  color: rgb(75, 150, 255);
 }
 #welcome .blurb i {
   color: rgba(255, 255, 255, 0.8);
   font-size: 1rem;
+}
+
+h2 {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
 }
 
 .project-display {
@@ -154,13 +159,6 @@ body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
   align-items: start;
-  padding: 0 1.5rem;
-}
-
-h2 {
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
 }
 
 @media (max-width: 800px) {
@@ -184,6 +182,14 @@ h2 {
     0 6px 6px rgba(0, 0, 0, 0.2), 
     0 0 20px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: box-shadow 0.5s, background 0.5s;
+}
+
+.card.project:hover {
+  box-shadow: inset 1px 1px 0 rgba(100, 100, 100, 0.5),
+    inset 0 0 5px rgba(50, 50, 50, 0.5),
+    0 0 10px #ffffff44;
+  background: rgba(255,255,255,0.1);
 }
 
 .project-image {
@@ -246,4 +252,45 @@ h2 {
   transform: translateY(-3px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.4);
   filter: none;
+}
+
+#education {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+}
+
+.education-card {
+  grid-column: span 3;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(3px);
+  border-radius: 12px;
+  display: grid;
+  overflow: hidden;
+  box-shadow: inset 1px 1px 0 rgba(100, 100, 100, 0.5),
+    inset 0 0 5px rgba(50, 50, 50, 0.5),
+    0 6px 6px rgba(0, 0, 0, 0.2), 
+    0 0 20px rgba(0, 0, 0, 0.1);
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  width: 40rem;
+}
+
+.education-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.education-desc {
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.45rem;
+  color: rgba(255,255,255,0.65);
 }
