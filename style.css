@@ -156,7 +156,6 @@ h2 {
 }
 
 .project-display {
-  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
@@ -256,7 +255,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 0;
+  padding: 0 1rem;
 }
 
 .education-card {
@@ -274,7 +273,6 @@ h2 {
     0 0 20px rgba(0, 0, 0, 0.1);
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
-  width: 40rem;
 }
 
 .education-info {
