@@ -30,6 +30,16 @@
   const TOPIC_LABEL = Object.fromEntries(TOPICS.map((t) => [t.id, t.label]));
   const DIFFICULTIES = ["Easy", "Medium", "Hard"];
 
+  /* Where a question comes from. The applied classes and the tutorials are the same
+     weekly practice material, so they are not distinguished here — only the
+     assignments are a separate source. */
+  const SOURCES = [
+    { id: "tutorial", label: "Tutorials" },
+    { id: "assignment", label: "Assignments" }
+  ];
+
+  const sourceOf = (q) => q.source || "tutorial";
+
   /* Triage statuses. Each question holds at most one, so "how many are left?"
      has a single answer. */
   const STATUSES = [
@@ -63,6 +73,7 @@
   const state = {
     topics: new Set(),
     diffs: new Set(),
+    sources: new Set(),
     statuses: new Set(),
     list: [],
     idx: 0,
@@ -74,6 +85,7 @@
   const el = {
     statusChips: $("status-chips"),
     diffChips: $("difficulty-chips"),
+    sourceChips: $("source-chips"),
     topicChips: $("topic-chips"),
     clear: $("clear"),
     resetProgress: $("reset-progress"),
@@ -90,9 +102,10 @@
   function matches(q) {
     const okTopic = state.topics.size === 0 || q.topics.some((t) => state.topics.has(t));
     const okDiff = state.diffs.size === 0 || state.diffs.has(q.difficulty);
+    const okSource = state.sources.size === 0 || state.sources.has(sourceOf(q));
     const status = Progress.get(q.id);
     const okStatus = state.statuses.size === 0 || (status !== null && state.statuses.has(status));
-    return okTopic && okDiff && okStatus;
+    return okTopic && okDiff && okSource && okStatus;
   }
 
   function filtered() {
@@ -105,6 +118,10 @@
 
   function diffCount(d) {
     return QUESTIONS.filter((q) => q.difficulty === d).length;
+  }
+
+  function sourceCount(id) {
+    return QUESTIONS.filter((q) => sourceOf(q) === id).length;
   }
 
   function chip(label, count, pressed, onClick) {
@@ -139,6 +156,16 @@
       el.diffChips.appendChild(
         chip(d, diffCount(d), state.diffs.has(d), () => {
           toggle(state.diffs, d);
+          refresh();
+        })
+      );
+    }
+
+    el.sourceChips.innerHTML = "";
+    for (const s of SOURCES) {
+      el.sourceChips.appendChild(
+        chip(s.label, sourceCount(s.id), state.sources.has(s.id), () => {
+          toggle(state.sources, s.id);
           refresh();
         })
       );
@@ -344,7 +371,9 @@
       <header class="card-head">
         <div class="card-head-top">
           <div class="tags">
-            <span class="week">Week ${q.week} · ${escapeHtml(q.label)}</span>
+            <span class="week">${sourceOf(q) === "assignment"
+        ? escapeHtml(q.group)
+        : "Week " + q.week} · ${escapeHtml(q.label)}</span>
             <span class="diff" data-d="${escapeHtml(q.difficulty)}">${escapeHtml(
       q.difficulty
     )}</span>
@@ -410,6 +439,7 @@
   function clearFilters() {
     state.topics.clear();
     state.diffs.clear();
+    state.sources.clear();
     state.statuses.clear();
     state.shuffled = false;
     refresh();

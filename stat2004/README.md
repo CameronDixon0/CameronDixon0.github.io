@@ -10,6 +10,7 @@ bank is loaded with plain `<script>` tags so `file://` works.
 
 - **Topic chips** filter by subject area (OR within topics).
 - **Difficulty chips** filter by Easy / Medium / Hard (OR within difficulties).
+- **Source chips** restrict to the weekly tutorials or to the assignments.
 - The filter groups combine with AND, e.g. *Hard* + *ANOVA* shows hard ANOVA questions.
 - **Clear all filters** resets to the full bank in tutorial order. It does *not* touch your
   progress marks.
@@ -47,12 +48,20 @@ never sent anywhere.
 
 ## Contents
 
-All 50 questions from Weeks 2–13, each tagged with topics and a difficulty:
+All 72 questions, each tagged with topics and a difficulty:
 
-| Week | Type | Questions |
-| ---- | ---- | --------- |
-| 2–7 | Applied class | 5, 5, 5, 4, 4, 3 |
-| 8–13 | Tutorial | 2, 4, 6, 4, 4, 4 |
+| Source | Material | Questions |
+| ------ | -------- | --------- |
+| Tutorials | Weeks 2–7 (applied classes) | 5, 5, 5, 4, 4, 3 |
+| Tutorials | Weeks 8–13 (tutorials) | 2, 4, 6, 4, 4, 4 |
+| Assignments | Assignments 1–4 | 5, 5, 6, 6 |
+
+The applied classes and the tutorials are the same weekly practice material, so they share a
+single *Tutorials* source in the app; only the assignments are a separate source. Total: 50
+tutorial questions and 22 assignment questions.
+
+Questions labelled *(STAT2904)* and *(bonus)* were the extension parts of the assignments and
+are included for extra practice. Assignment 5 of each set is not needed for a STAT2004 student.
 
 Week 13 has no official solution sheet, so its worked answers were computed directly
 (verified in R). Week 9 Exercise 1 (the t-method coverage simulation) likewise has no
@@ -78,6 +87,14 @@ at $\mu = 0.2$, where about 5% of samples are degenerate with $s = 0$.
 $n - p = 50 - 5 = 45$: it is 3.520 rather than 3.526. The conclusion is unchanged.
 - **Week 10 Exercise 2(h)** — the $\chi^{2}$ threshold was recomputed correctly, giving
 $\sum (X_i - \bar{X})^2 \ge 0.607$, i.e. $s \ge 0.189$.
+- **Assignment 1 Question 3** — the official code writes the method of moments estimator as
+$2\frac{n}{n-1}s^2 / (\frac{n}{n-1}s^2 - \bar{x}^2)$, but the derivation calls for
+$\frac{n-1}{n}s^2$ in both places. The correct values are $\hat\alpha = 4.5317$,
+$\hat\lambda = 36.08$ rather than $4.5203$ and $35.97$. The MLE is unaffected.
+
+Assignment 2 has no solution sheet, so its answers were worked out from scratch; the
+Delivery.csv regression, the Lomax standard errors and the delta-method interval were all
+computed in R and are quoted from that output.
 
 ### Never let one part give away another
 
