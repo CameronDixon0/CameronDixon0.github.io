@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/lectures.js"></script>
+<script src="js/exam.js"></script>
 <script src="js/progress.js"></script>
 <script src="vendor/katex/katex.min.js"></script>
 <script src="vendor/katex/auto-render.min.js"></script>
@@ -32,7 +33,7 @@
   </button>
 </header>
 
-<main class="layout">
+<main class="layout" id="layout">
 
   <aside class="panel">
     <section class="filter-group">
@@ -69,7 +70,11 @@
   <section class="stage">
     <div class="toolbar">
       <span class="count" id="count"></span>
-      <button class="ghost small" id="shuffle" type="button">Shuffle</button>
+      <div class="toolbar-actions">
+        <button class="toggle" id="exam-mode" type="button" aria-pressed="false" title="Show only the parts of each question that could be set in a written exam (E)">Exam mode</button>
+        <button class="ghost small" id="sheet-toggle" type="button" hidden>Tables</button>
+        <button class="ghost small" id="shuffle" type="button">Shuffle</button>
+      </div>
     </div>
 
     <article class="card" id="card"></article>
@@ -81,8 +86,10 @@
       <button class="ghost" id="next" type="button">Next →</button>
     </nav>
 
-    <p class="hint">Tip: use <kbd>←</kbd> <kbd>→</kbd> to move between questions, <kbd>H</kbd> for a hint, <kbd>R</kbd> to reveal, and <kbd>F</kbd> / <kbd>S</kbd> / <kbd>T</kbd> to flag, star or tick.</p>
+    <p class="hint">Tip: use <kbd>←</kbd> <kbd>→</kbd> to move between questions, <kbd>E</kbd> for exam mode, <kbd>H</kbd> for a hint, <kbd>R</kbd> to reveal, and <kbd>F</kbd> / <kbd>S</kbd> / <kbd>T</kbd> to flag, star or tick.</p>
   </section>
+
+  <div id="sheet" aria-live="polite"></div>
 
 </main>
 

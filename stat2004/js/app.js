@@ -71,6 +71,7 @@
   /* ----------------------------------------------------------------- state */
 
   const LECTURES = window.LECTURES || {};
+  const EXAM = window.EXAM_MODE || { questions: {}, sheet: [] };
 
   /* The sample paper has six questions. Each exam-style question records which of them it
      resembles, so the tag doubles as a reading guide. */
@@ -89,6 +90,8 @@
     sources: new Set(),
     statuses: new Set(),
     examOnly: false,
+    examMode: false,
+    sheetOpen: false,
     list: [],
     idx: 0,
     shuffled: false,
@@ -111,6 +114,10 @@
     next: $("next"),
     hint: $("hint"),
     examChips: $("exam-chips"),
+    examModeBtn: $("exam-mode"),
+    sheetBtn: $("sheet-toggle"),
+    sheet: $("sheet"),
+    layout: $("layout"),
     reveal: $("reveal")
   };
 
@@ -121,9 +128,12 @@
     const okDiff = state.diffs.size === 0 || state.diffs.has(q.difficulty);
     const okSource = state.sources.size === 0 || state.sources.has(sourceOf(q));
     const okExam = !state.examOnly || !!q.exam;
+    /* In exam mode a question with every part trimmed cannot be asked at all. */
+    const okExamMode =
+      !state.examMode || examView(q).q.parts.length > 0;
     const status = Progress.get(q.id);
     const okStatus = state.statuses.size === 0 || (status !== null && state.statuses.has(status));
-    return okTopic && okDiff && okSource && okExam && okStatus;
+    return okTopic && okDiff && okSource && okExam && okExamMode && okStatus;
   }
 
   function filtered() {
@@ -374,6 +384,57 @@
     });
   }
 
+  /* --------------------------------------------------------- exam-mode view */
+
+  /*
+   * In exam mode a question is shown with only the parts that could actually be set in a
+   * written exam, plus any results the exam would have to give you so the surviving parts
+   * stand alone. The underlying question object is never modified; this returns a view.
+   */
+  function examView(q) {
+    const cfg = EXAM.questions[q.id];
+    if (!cfg) return { q, trimmed: false, total: q.parts.length };
+
+    const drop = new Set(cfg.drop || []);
+    const parts = q.parts
+      .filter((p) => !drop.has(p.l))
+      .map((p) =>
+        cfg.reword && cfg.reword[p.l] ? { l: p.l, t: cfg.reword[p.l] } : p
+      );
+    const answer = q.answer
+      .filter((p) => !drop.has(p.l) && parts.some((pp) => pp.l === p.l))
+      .map((p) =>
+        cfg.answerPatch && cfg.answerPatch[p.l]
+          ? { l: p.l, t: cfg.answerPatch[p.l] }
+          : p
+      );
+
+    return {
+      q: {
+        id: q.id,
+        title: q.title,
+        topics: q.topics,
+        stem: (q.stem || "") + (cfg.addendum ? givenHtml(cfg.addendum) : ""),
+        parts: parts,
+        answer: answer,
+        note: q.note
+      },
+      trimmed: drop.size > 0 || !!(cfg.reword || cfg.addendum),
+      total: q.parts.length
+    };
+  }
+
+  function givenHtml(text) {
+    return `<div class="given"><span class="given-label">Given</span>${blocks(text)}</div>`;
+  }
+
+  function effectiveQuestion() {
+    const q = state.list[state.idx];
+    if (!q) return null;
+    if (!state.examMode) return { q, trimmed: false, total: q.parts.length };
+    return examView(q);
+  }
+
   function statusBarHtml(q) {    const current = Progress.get(q.id);
     const buttons = STATUSES.map((s) => {
       const on = current === s.id;
@@ -399,6 +460,8 @@
     el.prev.disabled = state.idx <= 0;
     el.next.disabled = state.idx >= state.list.length - 1;
     el.shuffle.disabled = state.list.length < 2;
+    el.examModeBtn.setAttribute("aria-pressed", state.examMode ? "true" : "false");
+    el.examModeBtn.textContent = state.examMode ? "Exam mode on" : "Exam mode";
 
     if (!q) {
       const why = state.statuses.size
@@ -417,6 +480,9 @@
     }
     el.reveal.disabled = false;
 
+    const view = effectiveQuestion();
+    const vq = view.q;
+
     const isRevealed = state.revealed.has(q.id);
     const isHinted = state.hinted.has(q.id);
     const hasHint = !!(q.hint && q.hint.text);
@@ -430,7 +496,7 @@
       ? `<section class="answer">
            <h3>Answer</h3>
            <div class="solution">
-             ${partsHtml(q.answer, "parts")}
+             ${partsHtml(vq.answer, "parts")}
            </div>
          </section>`
       : "";
@@ -456,10 +522,15 @@
         <h2 class="q-title">${escapeHtml(q.title)}</h2>
         <p class="q-topics">${escapeHtml(topicListHtml(q))}</p>
       </header>
+      ${state.examMode && view.trimmed
+        ? `<p class="exam-badge">Exam version${view.q.parts.length < view.total
+            ? ` — ${view.q.parts.length} of ${view.total} parts`
+            : ""}</p>`
+        : ""}
       <div class="q-body">
-        ${q.stem ? blocks(q.stem) : ""}
-        ${partsHtml(q.parts, "parts")}
-        ${q.note ? `<p class="q-topics">${q.note}</p>` : ""}
+        ${vq.stem ? blocks(vq.stem) : ""}
+        ${partsHtml(vq.parts, "parts")}
+        ${vq.note ? `<p class="q-topics">${vq.note}</p>` : ""}
       </div>
       ${hintHtml}
       ${answerHtml}`;
@@ -492,6 +563,7 @@
     rebuildList();
     buildFilterChips();
     render();
+    renderSheet();
   }
 
   function go(delta) {
@@ -516,6 +588,36 @@
     if (state.hinted.has(q.id)) state.hinted.delete(q.id);
     else state.hinted.add(q.id);
     render();
+  }
+
+  function sheetHtml() {
+    const rows = (EXAM.sheet || [])
+      .map((r) => `<tr><td><code>${escapeHtml(r[0])}</code></td><td>${escapeHtml(r[1])}</td></tr>`)
+      .join("");
+    return `<section class="sheet-panel">
+      <h3>Probabilities and quantiles</h3>
+      <p class="sheet-note">The only tables permitted in the exam. A basic scientific calculator is allowed.</p>
+      <table class="sheet-table"><tbody>${rows}</tbody></table>
+    </section>`;
+  }
+
+  function renderSheet() {
+    const open = state.examMode && state.sheetOpen;
+    el.sheetBtn.hidden = !state.examMode;
+    el.sheetBtn.textContent = open ? "Hide tables" : "Tables";
+    el.sheetBtn.setAttribute("aria-pressed", open ? "true" : "false");
+    el.sheet.innerHTML = open ? sheetHtml() : "";
+    /* Widens the page and opens the right-hand column (or the drawer, on narrow screens). */
+    if (el.layout) el.layout.classList.toggle("sheet-open", open);
+    typesetMath(el.sheet);
+  }
+
+  function toggleExamMode() {
+    state.examMode = !state.examMode;
+    if (!state.examMode) state.sheetOpen = false;
+    rebuildList();
+    render();
+    renderSheet();
   }
 
   function clearFilters() {
@@ -545,6 +647,11 @@
   el.hint.addEventListener("click", toggleHint);
   el.clear.addEventListener("click", clearFilters);
   el.resetProgress.addEventListener("click", resetProgress);
+  el.examModeBtn.addEventListener("click", toggleExamMode);
+  el.sheetBtn.addEventListener("click", () => {
+    state.sheetOpen = !state.sheetOpen;
+    renderSheet();
+  });
 
   el.shuffle.addEventListener("click", () => {
     const current = state.list[state.idx];
@@ -570,6 +677,9 @@
     } else if (e.key === "r" || e.key === "R") {
       e.preventDefault();
       toggleReveal();
+    } else if (e.key === "e" || e.key === "E") {
+      e.preventDefault();
+      toggleExamMode();
     } else if (e.key === "h" || e.key === "H") {
       e.preventDefault();
       toggleHint();
@@ -589,4 +699,5 @@
   buildFilterChips();
   rebuildList();
   render();
+  renderSheet();
 })();

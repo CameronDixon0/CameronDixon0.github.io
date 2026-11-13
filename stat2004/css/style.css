@@ -128,6 +128,13 @@ body {
   align-items: start;
 }
 
+/* With the tables open, widen the page and add a third column on the right. */
+.layout.sheet-open {
+  max-width: 1400px;
+  grid-template-columns: 248px minmax(0, 1fr) 296px;
+  gap: 32px;
+}
+
 .panel {
   position: sticky;
   top: 28px;
@@ -352,6 +359,147 @@ button:focus-visible {
   color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
 }
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Exam-mode switch: reads as a toggle, not a filter chip. */
+.toggle {
+  appearance: none;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 550;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.toggle::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition: background 120ms ease;
+}
+
+.toggle:hover { border-color: var(--ink-faint); color: var(--ink); }
+
+.toggle[aria-pressed="true"] {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
+.toggle[aria-pressed="true"]::before { background: var(--easy); }
+
+/* ---------- exam-mode extras ---------- */
+
+.exam-badge {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--medium);
+  border: 1px solid color-mix(in srgb, var(--medium) 45%, transparent);
+  background: color-mix(in srgb, var(--medium) 8%, transparent);
+}
+
+.given {
+  margin: 16px 0 4px;
+  padding: 12px 14px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink) 3%, transparent);
+  font-size: 0.92rem;
+}
+
+.given-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.66rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.given p { margin: 0; }
+
+.sheet-panel {
+  margin: 0;
+  padding: 16px 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  animation: fade 160ms ease-out;
+}
+
+/* The tables sit in their own right-hand column and follow you down the page. */
+#sheet {
+  position: sticky;
+  top: 28px;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#sheet:empty { display: none; }
+
+.sheet-panel h3 {
+  margin: 0 0 4px;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.sheet-note {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.sheet-table {
+  margin: 0;
+  font-size: 0.74rem;
+}
+
+.sheet-table tr {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 10px;
+  padding: 2px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.sheet-table td {
+  border: 0;
+  padding: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.sheet-table td:first-child { min-width: 0; }
+
+.sheet-table code { font-size: 0.96em; padding: 0; background: none; }
+
+.sheet-table td:last-child { color: var(--ink-soft); margin-left: auto; }
 
 /* ---------- card ---------- */
 
@@ -680,6 +828,34 @@ kbd {
 .empty .muted { font-size: 0.85rem; color: var(--ink-faint); }
 
 /* ---------- responsive ---------- */
+
+/* Not enough room for three columns: the tables become a panel pinned to the right edge
+   instead of squeezing the question. */
+@media (max-width: 1240px) {
+  .layout.sheet-open {
+    max-width: 1080px;
+    grid-template-columns: 248px minmax(0, 1fr);
+    gap: 40px;
+  }
+  .layout.sheet-open #sheet {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    width: min(340px, 88vw);
+    max-height: none;
+    padding: 22px 18px 40px;
+    background: var(--bg);
+    border-left: 1px solid var(--line-strong);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.10);
+  }
+  .layout.sheet-open #sheet .sheet-panel {
+    border: 0;
+    padding: 0;
+    background: none;
+  }
+}
 
 @media (max-width: 860px) {
   .layout { grid-template-columns: 1fr; gap: 24px; padding-bottom: 64px; }

@@ -70,6 +70,56 @@ Week 13 has no official solution sheet, so its worked answers were computed dire
 (verified in R). Week 9 Exercise 1 (the t-method coverage simulation) likewise has no
 official solution and is answered from first principles.
 
+## Exam mode
+
+The **Exam mode** toggle in the toolbar (or <kbd>E</kbd>) shows each question **trimmed to the
+parts that could actually be set in a written exam**, where only a basic scientific calculator
+is allowed. A **Tables** button then appears, holding the probability/quantile table printed on
+the final page of the paper.
+
+The tables open as a **sticky column on the right** of the question, so they stay in view as you
+scroll. Opening them widens the page to make room. Below 1240px there is not enough width for
+three columns, so they become a panel pinned to the right edge instead.
+
+Turning it off restores every question exactly as it was — the question data files are never
+modified. Trimming lives entirely in `js/exam.js`.
+
+### What counts as exam-viable
+
+Answerable with pen, paper and a scientific calculator — so logarithms, powers, roots, the four
+operations and 2×2 arithmetic are all fine — using only the printed table, or values given in
+the question. **Not** viable: numerical optimisation, simulation, evaluating long sums or
+integrals by hand, or looking up a probability the table does not supply.
+
+19 questions are trimmed. Each has a short entry:
+
+```js
+w12e2: {
+  drop: ["c", "d"],                       // parts that cannot be set
+  addendum: "You are given SS_diet = 1228.27 ... F_{2,12,0.95} = 3.885.",
+  reword:      { f: "...new wording..." },  // if a surviving part pointed at a dropped one
+  answerPatch: { f: "...new answer..." }    // and its answer
+}
+```
+
+When a surviving part depends on something that was dropped, the missing result is **given** in
+the card under a `Given` heading — which is what an exam would print. Examples:
+
+| Question | Trimmed | Why / what is given instead |
+|---|---|---|
+| Week 12 Ex 2 (ANOVA by hand) | drop (c), (d) | 15 numbers of hand arithmetic; the sums of squares and $F_{2,12,0.95}$ are given, so you complete the table as the paper's Q6 does |
+| Assignment 3 Q4 (concrete blocks) | drop (g) | the sample-size search needs a computer; (a)–(f) keep the supplied binomial probabilities |
+| Assignment 4 Q3 (TB × blood type) | drop (f) | $-2\log\Lambda$ over 12 cells by hand; the value is given and Pearson's $\chi^2$ remains your work |
+| Week 3 Q5 (ZI-Poisson) | drop (b) | the answer turns on `optim` output |
+| Week 9–13, A3/A4 | addenda only | quantiles the printed table lacks ($\chi^2_{17}, \chi^2_5, \chi^2_6, \chi^2_{11}, F_{2,12}, F_{1,8}$, beta quantiles) or summaries (group means and SDs, cell SDs) |
+
+Trimmed cards carry an **Exam version** badge, with a part count when parts were removed.
+
+### Why it is a separate layer
+
+Keeping the trims in `js/exam.js` guarantees the invariant you asked for: with exam mode off,
+every question renders byte-for-byte as before. A round-trip test asserts this for all 72 cards.
+
 ## The exam filter
 
 `2026SamplePaper.pdf` is 6 questions / 60 marks. Its signature is very specific:
@@ -173,6 +223,7 @@ index.html            page shell + script tags
 css/style.css         all styling (light & dark, responsive)
 js/theme.js           light/dark toggle, run early to avoid a flash
 js/lectures.js        catalogue of lecture decks, for hint links
+js/exam.js            exam-mode trims: dropped parts, given results, the printed table
 js/progress.js        flag / star / tick state, persisted in localStorage
 js/app.js             filtering, rendering, reveal logic, topic labels
 js/questions/weekNN.js  the question bank, one file per week
