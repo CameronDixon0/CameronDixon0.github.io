@@ -148,6 +148,7 @@ The general lesson: t-methods are robust to non-normality in the <em>shape</em> 
     label: "Exercise 3",
     title: "Testing for a biased coin: level, power and the power curve",
     difficulty: "Easy",
+    exam: "Q4",
     topics: ["testing", "distributions"],
     hint: {
       text: `$X \\sim \\mathrm{Bin}(10,p)$. The level is $P(\\text{reject} \\mid p = 0.5)$; the power at $p$ is the same sum of four binomial probabilities evaluated at $p$ instead of $0.5$.`,
@@ -201,6 +202,7 @@ The test is powerful only against <em>severely</em> biased coins: at $p = 0.1$ t
     label: "Exercise 4",
     title: "Testing for a loaded die",
     difficulty: "Easy",
+    exam: "Q5",
     topics: ["testing", "distributions"],
     hint: {
       text: `$X \\sim \\mathrm{Bin}(100, 1/6)$ under $H_0$. Note what the result <em>doesn't</em> account for: the outcome tested was chosen after seeing which face looked most unusual.`,

@@ -6,6 +6,7 @@
     label: "Exercise 1",
     title: "Likelihood ratio test for exponential bulb lifetimes",
     difficulty: "Medium",
+    exam: "Q4",
     topics: ["lrt", "testing"],
     hint: {
       text: `Turn the claim into a value of $\\lambda$: $P(X > 24) = 0.9$ means $\\lambda_0 = -\\log(0.9)/24$. Then form the likelihood ratio for $\\lambda_0$ against $\\lambda_1 > \\lambda_0$ and note it is small exactly when $X$ is small.`,
@@ -66,6 +67,7 @@ If the true failure rate were $0.0044$, a lifetime as short as 12.4 months (or s
     label: "Exercise 2",
     title: "Testing the precision of an apparatus",
     difficulty: "Hard",
+    exam: "Q4",
     topics: ["lrt", "testing", "distributions"],
     hint: {
       text: `With a known mean, $\\sum (X_i - \\mu)^2/\\sigma_0^2 \\sim \\chi^{2}_n$; once you estimate $\\mu$ you lose a degree of freedom and get $\\chi^{2}_{n-1}$. Set the critical value at the upper $5\\%$ point, and remember the sample mean and variance are independent for normal data.`,
@@ -215,6 +217,7 @@ using the binomial theorem from part (a). This is exactly the $\\mathrm{Poisson}
     label: "Exercise 4",
     title: "Hypothesis tests for the Poisson call rate",
     difficulty: "Medium",
+    exam: "Q4",
     topics: ["testing", "mle", "distributions"],
     hint: {
       text: `Under $H_0$ the total count is $\\mathrm{Poisson}(15 \\times 7.3)$. Rejecting for $\\bar{X} \\ge c$ is the same as rejecting for the total $\\ge 15c$ — find the smallest attainable level not exceeding $5\\%$.`,
@@ -291,6 +294,7 @@ If the call rate really were only $7.3$ per hour, a total this large or larger w
     label: "Exercise 5",
     title: "One-sided confidence intervals for the Poisson rate",
     difficulty: "Medium",
+    exam: "Q4",
     topics: ["ci", "testing", "distributions"],
     hint: {
       text: `Invert the test: the confidence set is exactly the set of $\\lambda_0$ values you would <em>not</em> reject. So find the boundary $\\lambda_0$ at which the $p$-value crosses $0.05$.`,

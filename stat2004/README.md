@@ -11,6 +11,7 @@ bank is loaded with plain `<script>` tags so `file://` works.
 - **Topic chips** filter by subject area (OR within topics).
 - **Difficulty chips** filter by Easy / Medium / Hard (OR within difficulties).
 - **Source chips** restrict to the weekly tutorials or to the assignments.
+- **Exam style** restricts to the 58 questions that match the form of the sample paper.
 - The filter groups combine with AND, e.g. *Hard* + *ANOVA* shows hard ANOVA questions.
 - **Clear all filters** resets to the full bank in tutorial order. It does *not* touch your
   progress marks.
@@ -68,6 +69,59 @@ are included for extra practice. Assignment 5 of each set is not needed for a ST
 Week 13 has no official solution sheet, so its worked answers were computed directly
 (verified in R). Week 9 Exercise 1 (the t-method coverage simulation) likewise has no
 official solution and is answered from first principles.
+
+## The exam filter
+
+`2026SamplePaper.pdf` is 6 questions / 60 marks. Its signature is very specific:
+
+| Paper question | What it tests | Marks |
+|---|---|---|
+| Q1 | one-parameter MLE chain: log-likelihood → score → MLE exists and is unique → Fisher information → asymptotic distribution → unbiasedness and Cramér–Rao → consistency | 13 |
+| Q2 | regression theory (H symmetric/idempotent, E(Ŷ), Var(Ŷ), Gauss–Markov vs shrinkage) then a **supplied diagnostics table**: Bonferroni outlier criterion, comparing influence, VIF, Box–Cox | 12 |
+| Q3 | **supplied `glm` output**: interpret an odds ratio, predict a probability, delta-method standard error from `vcov`, describe a plot to check lack of fit | 5 |
+| Q4 | two-sample normal, σ² known: distributions → pivot → CI → likelihood → GLRT → critical values → CI/test duality | 10 |
+| Q5 | multinomial 1×3: constrained MLE under $H_0$, MLE under $H_1$, Pearson χ², justify the df, p-value | 10 |
+| Q6 | one-way ANOVA: error assumptions (and are they reasonable), hypotheses, complete the ANOVA table, contrast parametrisation, likelihood, MLEs, interpret the output | 10 |
+
+So the **Exam style** filter keeps a question only if all three hold:
+
+1. it can be answered **by hand from information printed in the question**;
+2. it is in a topic the paper examines;
+3. it is in a **written-exam form** — a derivation, or interpretation of supplied output — not a
+   simulation, not Bayesian, not open-ended discussion.
+
+58 of the 72 qualify. Each one carries a dashed tag (`Q1` … `Q6`) saying which paper question it
+resembles; hover it for a one-line description. The counts:
+
+| Tag | Meaning | Questions |
+|---|---|---|
+| `Q1` | MLE, information, Cramér–Rao | 17 |
+| `Q2` | Regression theory and diagnostics | 10 |
+| `Q3` | Logistic regression from output | 3 |
+| `Q4` | Pivots, confidence intervals and GLRTs | 13 |
+| `Q5` | Multinomial data and Pearson's χ² | 8 |
+| `Q6` | One-way ANOVA | 7 |
+
+### The 14 deliberately left out
+
+| Question | Why |
+|---|---|
+| Week 2 Q3, Assignment 1 Q5 | measure-theoretic / unusual proof, unlike any paper part |
+| Week 2 Q5 | method of moments only; the paper works through likelihood |
+| Week 3 Q5 | zero-inflated Poisson; the answer turns on optimiser diagnostics |
+| Assignment 2 Q3 | optimal experimental design — no design question on the paper |
+| Week 8 E2, Assignment 3 Q2 | Bayesian priors and posteriors — the paper has no Bayesian question |
+| Week 9 E1 | coverage simulation study |
+| Week 9 E2 | true/false recall; the paper is entirely calculation |
+| Week 10 E3 | convolution and induction proof for sums of Poissons |
+| Week 10 E6 | power-curve description and a sample-size search |
+| Week 11 E1 | deriving multinomial marginal and covariance properties |
+| Assignment 3 Q6 | distribution-free median interval plus a simulation comparison |
+| Week 13 E4 | a single descriptive part on design matrices |
+
+If you know a topic is examinable that the sample paper happens not to show — Bayesian inference
+is the obvious candidate — add `exam: "Q…"` to those questions and they will reappear in the
+filter.
 
 ## Exam-oriented framing
 
@@ -210,6 +264,7 @@ Each `js/questions/weekNN.js` file pushes objects onto `window.QBANK`:
   title: "Maximum likelihood for the geometric distribution",
   difficulty: "Easy",     // "Easy" | "Medium" | "Hard"
   topics: ["mle"],        // ids from the TOPICS list in js/app.js
+  exam: "Q1",             // optional: which sample-paper question this resembles
   hint: {                 // optional: a nudge plus lecture deck ids
     text: "Write the likelihood as $p^{n}(1-p)^{S-n}$ ...",
     refs: ["l03", "l04"]

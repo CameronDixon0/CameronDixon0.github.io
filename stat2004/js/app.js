@@ -72,11 +72,23 @@
 
   const LECTURES = window.LECTURES || {};
 
+  /* The sample paper has six questions. Each exam-style question records which of them it
+     resembles, so the tag doubles as a reading guide. */
+  const PAPER = {
+    Q1: "Paper Q1 — maximum likelihood, information, Cramér–Rao",
+    Q2: "Paper Q2 — regression theory and diagnostics",
+    Q3: "Paper Q3 — logistic regression from output",
+    Q4: "Paper Q4 — pivots, confidence intervals and GLRTs",
+    Q5: "Paper Q5 — multinomial data and Pearson's chi-squared",
+    Q6: "Paper Q6 — one-way ANOVA"
+  };
+
   const state = {
     topics: new Set(),
     diffs: new Set(),
     sources: new Set(),
     statuses: new Set(),
+    examOnly: false,
     list: [],
     idx: 0,
     shuffled: false,
@@ -98,6 +110,7 @@
     prev: $("prev"),
     next: $("next"),
     hint: $("hint"),
+    examChips: $("exam-chips"),
     reveal: $("reveal")
   };
 
@@ -107,9 +120,10 @@
     const okTopic = state.topics.size === 0 || q.topics.some((t) => state.topics.has(t));
     const okDiff = state.diffs.size === 0 || state.diffs.has(q.difficulty);
     const okSource = state.sources.size === 0 || state.sources.has(sourceOf(q));
+    const okExam = !state.examOnly || !!q.exam;
     const status = Progress.get(q.id);
     const okStatus = state.statuses.size === 0 || (status !== null && state.statuses.has(status));
-    return okTopic && okDiff && okSource && okStatus;
+    return okTopic && okDiff && okSource && okExam && okStatus;
   }
 
   function filtered() {
@@ -126,6 +140,10 @@
 
   function sourceCount(id) {
     return QUESTIONS.filter((q) => sourceOf(q) === id).length;
+  }
+
+  function examCount() {
+    return QUESTIONS.filter((q) => !!q.exam).length;
   }
 
   function chip(label, count, pressed, onClick) {
@@ -174,6 +192,15 @@
         })
       );
     }
+
+    /* A single toggle: "only questions that resemble the sample paper". */
+    el.examChips.innerHTML = "";
+    const examChip = chip("Exam style", examCount(), state.examOnly, () => {
+      state.examOnly = !state.examOnly;
+      refresh();
+    });
+    examChip.title = "Only questions in the same form as the sample paper";
+    el.examChips.appendChild(examChip);
 
     el.topicChips.innerHTML = "";
     for (const t of TOPICS) {
@@ -418,6 +445,11 @@
             <span class="diff" data-d="${escapeHtml(q.difficulty)}">${escapeHtml(
       q.difficulty
     )}</span>
+            ${q.exam
+        ? `<span class="paper-tag" title="${escapeHtml(
+            PAPER[q.exam] || ""
+          )}">${escapeHtml(q.exam)}</span>`
+        : ""}
           </div>
           ${statusBarHtml(q)}
         </div>
@@ -491,6 +523,7 @@
     state.diffs.clear();
     state.sources.clear();
     state.statuses.clear();
+    state.examOnly = false;
     state.shuffled = false;
     refresh();
   }

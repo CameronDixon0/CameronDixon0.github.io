@@ -6,6 +6,7 @@
     label: "Question 1",
     title: "Full column rank, invertibility and zero-variance estimates",
     difficulty: "Medium",
+    exam: "Q2",
     topics: ["regression", "estimation"],
     hint: {
       text: `Prove both directions. If $\\mathbf{X}\\mathbf{c} = \\mathbf{0}$ then $\\mathbf{X}^{\\top}\\mathbf{X}\\mathbf{c} = \\mathbf{0}$. Conversely, pre-multiply by $\\mathbf{c}^{\\top}$ and use $\\mathbf{c}^{\\top}\\mathbf{X}^{\\top}\\mathbf{X}\\mathbf{c} = \\lVert\\mathbf{X}\\mathbf{c}\\rVert^{2}$.`,
@@ -47,6 +48,7 @@ So no such $\\mathbf{c}$ exists: every non-trivial linear combination of $\\hat{
     label: "Question 2",
     title: "Regression through the origin: consistency and MSE comparison",
     difficulty: "Hard",
+    exam: "Q2",
     topics: ["regression", "estimation", "sampling"],
     hint: {
       text: `$\\hat{\\beta}_n$ is the least-squares solution with a single column. For consistency use MSE $\\to 0$ and the fact that partial sums of $x_j^2$ are non-decreasing. For (e) apply Cauchy–Schwarz to $a_j = x_j$ and $b_j = x_j^{-1}$.`,
@@ -118,6 +120,7 @@ Equality in Cauchy–Schwarz holds if and only if $(x_1,\\dots,x_n)$ and $(x_1^{
     label: "Question 3",
     title: "Omitting a variable that is orthogonal to the design",
     difficulty: "Medium",
+    exam: "Q2",
     topics: ["regression", "estimation"],
     hint: {
       text: `Substitute the true model into $\\hat{\\boldsymbol{\\beta}}$ and take expectations to find the omission bias. For (d) use $\\mathbf{H}\\mathbf{X} = \\mathbf{X}$, $\\mathbf{H}\\mathbf{z} = \\mathbf{0}$, and that $\\mathbf{I}-\\mathbf{H}$ is symmetric and idempotent.`,
@@ -193,6 +196,7 @@ since $\\mathbf{H}$ is symmetric and idempotent, so that $\\mathbf{I}_n - \\math
     label: "Question 4",
     title: "Influence and leverage in the SAT regression",
     difficulty: "Medium",
+    exam: "Q2",
     topics: ["regression", "diagnostics"],
     hint: {
       text: `Cook's distance combines a standardised residual with leverage. Compare each state's leverage with the average $p/n = 0.10$, and read the <code>dfbeta</code> rows to see what deletion actually does.`,

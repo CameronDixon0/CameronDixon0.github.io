@@ -7,6 +7,7 @@
     source: "assignment",
     title: "The Rayleigh distribution: MLE, bias, MSE and consistency",
     difficulty: "Medium",
+    exam: "Q1",
     topics: ["mle", "estimation", "sampling"],
     hint: {
       text: `$\\ell'(\\theta) = -n/\\theta + S/(2\\theta^{2})$ where $S = \\sum x_i^{2}$; rewriting $U(\\theta) = (S-2n\\theta)/(2\\theta^{2})$ shows the sign change. Bias comes from $\\mathrm{E}(X^{2}) = 2\\theta$, and the MSE from $\\mathrm{Var}(X^{2}) = 8\\theta^{2}-(2\\theta)^{2}$.`,
@@ -79,6 +80,7 @@ the mean squared error converges to zero, and an estimator whose MSE tends to ze
     source: "assignment",
     title: "The zero-truncated Poisson: existence and uniqueness of the MLE",
     difficulty: "Hard",
+    exam: "Q1",
     topics: ["mle", "estimation"],
     hint: {
       text: `The score can be written as $\\frac{n}{\\theta}[\\bar{X}-g(\\theta)]$. To show $g$ is increasing you need $e^{\\theta} > 1+\\theta$. The range of $g$ on $(0,\\infty)$ tells you exactly when the MLE exists.`,
@@ -146,6 +148,7 @@ Since each observation is a positive integer, $\\bar{X} = 1$ occurs exactly when
     source: "assignment",
     title: "The Lomax distribution: method of moments and numerical MLE",
     difficulty: "Hard",
+    exam: "Q1",
     topics: ["moments", "mle", "estimation"],
     hint: {
       text: `For the method of moments, divide the variance equation by the mean equation. Note $m_2 - m_1^{2} = \\left(\\frac{n-1}{n}\\right)s^{2}$. For (d), read $\\alpha$ as the tail index: it decides which moments even exist.`,
@@ -224,6 +227,7 @@ which is close to the sample mean of $10.217$ — a useful check that the fit is
     source: "assignment",
     title: "Estimating $p^{2}$ from a Binomial$(2,p)$ sample",
     difficulty: "Medium",
+    exam: "Q1",
     topics: ["estimation", "mle"],
     hint: {
       text: `$Y_j$ is Bernoulli$(p^{2})$, so $\\mathrm{E}(Y_j) = p^{2}$. For the MLE use invariance, then $\\mathrm{E}(\\hat{p}^{2}) = \\mathrm{Var}(\\hat{p}) + \\{\\mathrm{E}(\\hat{p})\\}^{2}$ with $\\hat{p} = S/(2n)$.`,

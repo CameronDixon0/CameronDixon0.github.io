@@ -6,6 +6,7 @@
     label: "Question 1",
     title: "Information and asymptotics for the geometric MLE",
     difficulty: "Medium",
+    exam: "Q1",
     topics: ["info", "mle", "estimation"],
     hint: {
       text: `Differentiate $\\ell$ twice for the observed information, then take expectations using $\\mathrm{E}(\\sum X_i) = n/p$. For (c) ask what $\\hat{p}$ equals with probability one when $p_0 = 1$.`,
@@ -65,6 +66,7 @@ which equals $\\mathrm{Var}_p(\\bar{X})$ exactly. So yes — the MLE of $p^{-1}$
     label: "Question 2",
     title: "Observed information and boundary asymptotics",
     difficulty: "Medium",
+    exam: "Q1",
     topics: ["info", "mle"],
     hint: {
       text: `Again $J(\\theta) = -\\ell''(\\theta)$. When $\\theta_0 = 0$ the density is $\\frac{1}{2}$, so the integral for the expected information is elementary. For (c) argue from the sign of $\\hat{\\theta}+1$.`,
@@ -110,6 +112,7 @@ with probability one. A non-degenerate normal random variable cannot be non-nega
     label: "Question 3",
     title: "A constrained multinomial model for plant cells",
     difficulty: "Hard",
+    exam: "Q5",
     topics: ["mle", "tables", "info"],
     hint: {
       text: `Only $m = n_1+n_2$ enters the likelihood. For existence you need $\\ell'$ to change sign on $(0,1)$ — evaluate $\\ell'(0^{+})$ and $\\ell'(1^{-})$ and consider the cases $n_3 > 0$ and $n_3 = 0$.`,
@@ -182,6 +185,7 @@ so the asymptotic variance of $\\hat{\\theta}$ is $\\dfrac{2\\theta(1-\\theta)(2
     label: "Question 4",
     title: "Standard errors for the zero-inflated Poisson MLE",
     difficulty: "Easy",
+    exam: "Q1",
     topics: ["info", "mle", "simulation"],
     hint: {
       text: `The Hessian returned by <code>optim</code> is the negative Hessian of the log-likelihood, i.e. the observed information. Invert it, take square roots of the diagonal for standard errors, and use the delta method for the mean.`,
@@ -249,6 +253,7 @@ so the two estimates are essentially uncorrelated in this sample. Both estimates
     label: "Question 5",
     title: "The inverse Gaussian: score, MLE and information",
     difficulty: "Hard",
+    exam: "Q1",
     topics: ["mle", "info"],
     hint: {
       text: `Differentiate $\\ell$ with respect to $\\mu$ and to $\\lambda$ separately. For the information matrix, note that the cross term involves $\\sum(x_i-\\mu)$, whose expectation is zero — that is why the matrix comes out diagonal.`,

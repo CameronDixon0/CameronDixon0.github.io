@@ -6,6 +6,7 @@
     label: "Exercise 1",
     title: "Grades and majors: association in a contingency table",
     difficulty: "Medium",
+    exam: "Q5",
     topics: ["tables", "testing"],
     hint: {
       text: `A test of association: $H_0$ says $p_{ij} = p_{i\\bullet}p_{\\bullet j}$. R's warning is about expected counts below $5$, which is exactly when the exact (permutation) test is preferable.`,
@@ -88,6 +89,7 @@ If there were no association between grades and majors, counts at least this unu
     label: "Exercise 2",
     title: "Weight gain and protein diet: a one-way ANOVA by hand",
     difficulty: "Easy",
+    exam: "Q6",
     topics: ["anova"],
     hint: {
       text: `$\\mathrm{SS}_{\\text{diet}} = 5\\sum_j(\\bar{y}_{j\\bullet}-\\bar{y}_{\\bullet\\bullet})^2$ and $\\mathrm{SS}_{\\text{residual}}$ is the within-group sum. Degrees of freedom: $3-1 = 2$ between, and $3\\times(5-1) = 12$ within.`,
@@ -193,6 +195,7 @@ confirms the hand calculation in part (f): $614.14$ is $1228.27/2$, and the $F$ 
     label: "Exercise 3",
     title: "Two-group ANOVA versus the two-sample $t$ test",
     difficulty: "Medium",
+    exam: "Q6",
     topics: ["anova", "testing", "distributions"],
     hint: {
       text: `The identity $F = T^{2}$ is the whole point. Write $\\mathrm{SS}_{\\text{group}}$ in terms of $\\bar{y}_{1\\bullet}-\\bar{y}_{2\\bullet}$ using the weighted expression for the overall mean.`,
@@ -254,6 +257,7 @@ The pooled variance is related to the residual sum of squares by $S_{\\text{pool
     label: "Exercise 4",
     title: "Working with different ANOVA parametrisations",
     difficulty: "Hard",
+    exam: "Q6",
     topics: ["anova", "mle"],
     hint: {
       text: `Maximise $\\ell$ over $(\\mu,\\alpha_j,\\sigma^2)$. The constraint $\\sum_j \\alpha_j = 0$ is what makes $\\hat{\\mu}$ the overall mean; the contrast constraint $\\alpha_1 = 0$ instead makes $\\hat{\\mu}$ the mean of group 1.`,

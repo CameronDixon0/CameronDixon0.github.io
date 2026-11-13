@@ -6,6 +6,7 @@
     label: "Question 1",
     title: "Collinearity, $R^{2}$ and why correlated covariates can both matter",
     difficulty: "Hard",
+    exam: "Q2",
     topics: ["regression", "diagnostics"],
     hint: {
       text: `Both $\\mathbf{x}_1^{\\top}\\mathbf{x}_2$ and $\\lVert\\mathbf{x}_1\\rVert^{2}$ reduce to multiples of $S = \\mathbf{z}^{\\top}\\mathbf{z}$. For (c), note $\\mathbf{x}_1-\\mathbf{x}_2 = 2\\delta\\mathbf{u}$, so $\\mathbf{y}$ is an exact linear combination of the two covariates.`,
@@ -69,6 +70,7 @@ So high correlation between two covariates is not, by itself, a reason to remove
     label: "Question 2",
     title: "Deleting an observation with a zero residual",
     difficulty: "Easy",
+    exam: "Q2",
     topics: ["regression", "diagnostics"],
     hint: {
       text: `Write out the normal equations and notice that observation $i$ contributes $\\mathbf{x}_i e_i = \\mathbf{0}$. The residual sum of squares is unchanged — only the divisor in $\\hat{\\sigma}^2$ changes.`,
@@ -103,6 +105,7 @@ It therefore increases (when $\\mathrm{RSS} > 0$), since the same residual sum o
     label: "Question 3",
     title: "Diagnostics, transformations and Box–Cox for the trees data",
     difficulty: "Medium",
+    exam: "Q2",
     topics: ["regression", "diagnostics", "transform"],
     hint: {
       text: `Read the four panels in turn: curvature in residuals-versus-fitted means the mean structure is wrong, a fan shape in scale-location means non-constant variance, and the normal Q-Q plot is what speaks to normality.`,
@@ -273,6 +276,7 @@ Since that interval comfortably contains $0$, the logarithmic transformation $\\
     label: "Question 4",
     title: "Outliers, collinearity and VIFs in the SAT regression",
     difficulty: "Medium",
+    exam: "Q2",
     topics: ["regression", "diagnostics", "multiplicity"],
     hint: {
       text: `$\\mathrm{VIF}_j = 1/(1-R_j^{2})$ where $R_j^{2}$ comes from regressing covariate $j$ on the others. When screening many residuals, compare $|r_i|$ against the Bonferroni critical value $t_{1-\\alpha/(2n)}$.`,

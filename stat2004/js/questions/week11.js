@@ -69,6 +69,7 @@ i.e. they are perfectly negatively correlated. We did not need any formula for t
     label: "Exercise 2",
     title: "Goodness-of-fit test for a die, and data snooping",
     difficulty: "Medium",
+    exam: "Q5",
     topics: ["gof", "tables", "multiplicity"],
     hint: {
       text: `Pearson's statistic is $\\sum (O-E)^2/E$ with $E = 100/6$ and $5$ degrees of freedom. Compare $-2\\log\\Lambda$ with the same $\\chi^{2}_5$. For (g) the correction for having six faces to choose from is a Bonferroni multiplication.`,
@@ -133,6 +134,7 @@ After adjusting for multiplicity there is again no evidence that the die is load
     label: "Exercise 3",
     title: "Are suicide rates constant throughout the year?",
     difficulty: "Easy",
+    exam: "Q5",
     topics: ["gof"],
     hint: {
       text: `Expected counts are proportional to the number of days in each month. Degrees of freedom: twelve cells minus one constraint, so $11$.`,
@@ -207,6 +209,7 @@ So the suicide rate appears lowest in the US winter months and highest during Ap
     label: "Exercise 4",
     title: "Assessing authorship via word usage",
     difficulty: "Medium",
+    exam: "Q5",
     topics: ["tables"],
     hint: {
       text: `A test of homogeneity: $E_{ij} = (\\text{row}_i \\times \\text{col}_j)/N$ and $(r-1)(c-1)$ degrees of freedom. Pool Austen's three works first — that is what part (a) licenses you to do.`,

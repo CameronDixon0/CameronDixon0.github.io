@@ -6,6 +6,7 @@
     label: "Exercise 1",
     title: "Pivot transformation for exponential data",
     difficulty: "Easy",
+    exam: "Q4",
     topics: ["sampling", "ci", "distributions"],
     hint: {
       text: `Get the cdf of $Y = \\lambda X$ directly from the cdf of $X$ — that is easier than transforming the density. A pivot is a function of the data and the parameter whose distribution does not involve the parameter; once you have one, invert the probability statement.`,

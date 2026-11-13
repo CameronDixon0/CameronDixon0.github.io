@@ -7,6 +7,7 @@
     source: "assignment",
     title: "Testing whether two exponential rates are equal",
     difficulty: "Hard",
+    exam: "Q4",
     topics: ["lrt", "testing", "distributions"],
     hint: {
       text: `Under $H_0$ all fifteen observations share one rate, so pool them. The ratio collapses to a constant times $T^{8}(1-T)^{7}$, which is maximised at $T = 8/15$ — hence rejection for $T$ far from $8/15$ in either direction.`,
@@ -94,6 +95,7 @@ These two one-sided tests are different, so no single test can be most powerful 
     source: "assignment",
     title: "Comparing ratings across two groups of users",
     difficulty: "Medium",
+    exam: "Q5",
     topics: ["tables", "testing"],
     hint: {
       text: `These are <em>categories</em>, not measurements, so a chi-squared test of homogeneity is the right tool — compare the observed counts with $E_{ij} = \\text{row}\\times\\text{col}/n$. Then think hard about the independence assumption for an online poll.`,
@@ -171,6 +173,7 @@ A $t$ test would also implicitly assume normality of the responses within each g
     source: "assignment",
     title: "Tuberculosis severity and blood type",
     difficulty: "Medium",
+    exam: "Q5",
     topics: ["tables", "gof", "testing"],
     hint: {
       text: `Multinomial data, so $-2\\log\\Lambda = 2\\sum O\\log(O/E)$ with $E_{ij} = x_{i\\bullet}x_{\\bullet j}/n$ and $(3-1)(4-1) = 6$ degrees of freedom. The cell with only $3$ counts is your cue to consider a permutation test.`,
@@ -293,6 +296,7 @@ The simulated $p$-value is $0.0169$, very close to the asymptotic $0.0176$ from 
     source: "assignment",
     title: "Vitamin B12, antibiotics and weight gain: a two-way ANOVA",
     difficulty: "Medium",
+    exam: "Q6",
     topics: ["anova", "regression"],
     hint: {
       text: `Two-way ANOVA: get $\\mathrm{SS}_{AB}$ from the decomposition $\\mathrm{SS}_{\\text{Total}} - \\mathrm{SS}_A - \\mathrm{SS}_B - \\mathrm{SS}_{\\text{residual}}$, and $\\mathrm{MS} = \\mathrm{SS}/\\mathrm{df}$ throughout. Assess the interaction before the main effects.`,
@@ -421,6 +425,7 @@ Looking at the raw weight gains, vitamin B12 has a large positive effect when an
     source: "assignment",
     title: "GLRT for a Pareto tail index",
     difficulty: "Hard",
+    exam: "Q4",
     topics: ["lrt", "mle", "testing"],
     hint: {
       text: `The likelihood increases in $\\nu$ until the support constraint binds, so $\\hat{\\nu} = \\min X_i$ regardless of $\\theta$. Then $\\Lambda = (T/n)^{n}e^{n-T}$, which is increasing in $T$ up to $T = n$ and decreasing after.`,
@@ -490,6 +495,7 @@ Hence <em>small</em> values of $\\Lambda$ correspond to $T$ being either small o
     source: "assignment",
     title: "A pivot when the variance grows with the mean",
     difficulty: "Medium",
+    exam: "Q4",
     topics: ["ci", "sampling", "distributions"],
     hint: {
       text: `Standardise: $(X_i-\\mu)/\\mu \\sim \\mathrm{N}(0,1)$ because the variance is $\\mu^{2}$. Averaging gives $(\\bar{X}-\\mu)/(\\mu/\\sqrt{n}) \\sim \\mathrm{N}(0,1)$ — a pivot, so invert the probability statement.`,

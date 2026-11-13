@@ -6,6 +6,7 @@
     label: "Exercise 1",
     title: "Comparing four control groups: ANOVA versus pairwise testing",
     difficulty: "Medium",
+    exam: "Q6",
     topics: ["anova", "multiplicity", "testing"],
     hint: {
       text: `With five observations per group the quartiles of a boxplot are barely meaningful, so show the individual points. The ANOVA has $(3,16)$ degrees of freedom. For the pairwise test, remember the pair was chosen after looking at the data — Bonferroni over the six comparisons.`,
@@ -114,6 +115,7 @@ If instead the $t$ test uses the pooled residual standard deviation from all fou
     label: "Exercise 2",
     title: "Laptops and scrotal temperatures",
     difficulty: "Medium",
+    exam: "Q6",
     topics: ["anova", "diagnostics"],
     hint: {
       text: `A balanced one-way ANOVA with $n = 50$ per group, so the CLT covers moderate non-normality. The assumption worth checking carefully is constant variance.`,
@@ -175,6 +177,7 @@ If the ANOVA gives no significant difference, the honest answer is that this stu
     label: "Exercise 3",
     title: "Two-way ANOVA of survival times by poison and treatment",
     difficulty: "Hard",
+    exam: "Q6",
     topics: ["anova", "transform", "diagnostics"],
     hint: {
       text: `Assess the interaction <em>before</em> the main effects — if it is non-zero, main effects on their own are misleading. For constant variance compare the within-cell standard deviations; a reciprocal is a variance-stabilising transformation with a natural interpretation as a rate.`,

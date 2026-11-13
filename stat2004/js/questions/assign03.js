@@ -7,6 +7,7 @@
     source: "assignment",
     title: "Two competing confidence intervals for a variance",
     difficulty: "Medium",
+    exam: "Q4",
     topics: ["ci", "distributions"],
     hint: {
       text: `$(n-1)S^{2}/\\sigma^{2} \\sim \\chi^{2}_{n-1}$ with $n = 18$, so $17S^{2}/\\sigma^{2} \\sim \\chi^{2}_{17}$. Invert $P(a \\le \\chi^{2}_{17} \\le b) = 0.95$ to get an interval of the form $(17S^{2}/b,\\; 17S^{2}/a)$.`,
@@ -159,6 +160,7 @@ Note how different this interpretation is from a frequentist confidence interval
     source: "assignment",
     title: "A confidence interval for the bound of a uniform distribution",
     difficulty: "Medium",
+    exam: "Q4",
     topics: ["ci", "sampling", "mle"],
     hint: {
       text: `$|X_i| \\sim \\mathrm{Uniform}(0,\\theta)$, so $U_1 = |X_i|/\\theta \\sim \\mathrm{Uniform}(0,1)$. The MLE is the maximum of the $|X_i|$ because the likelihood is $\\theta^{-n}$ on a region that shrinks as $\\theta$ shrinks.`,
@@ -240,6 +242,7 @@ The correct statement is: "the procedure that produced this interval captures $\
     source: "assignment",
     title: "Testing a failure probability: level, power, LRT and sample size",
     difficulty: "Medium",
+    exam: "Q4",
     topics: ["testing", "lrt", "distributions"],
     hint: {
       text: `The level is $P(X \\le 15) + P(X \\ge 26)$ for $X \\sim \\mathrm{Bin}(50,0.4)$. For the LRT, note $\\Lambda$ is a constant times $(2/3)^{X}$, so it is decreasing in $X$ — that is why the rejection region is one-sided.`,
@@ -351,6 +354,7 @@ which has power $0.900$. Because the alternative $p = 0.5$ is close to the null 
     source: "assignment",
     title: "Shortest confidence interval via the probability integral transform",
     difficulty: "Hard",
+    exam: "Q4",
     topics: ["ci", "mle", "sampling"],
     hint: {
       text: `The probability integral transform gives $F(\\hat{\\theta}) = (\\hat{\\theta}/\\theta)^{2n} \\sim \\mathrm{Uniform}(0,1)$. Then differentiate the interval length with respect to $a$ and check its sign over $[0,0.05]$.`,

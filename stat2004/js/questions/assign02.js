@@ -7,6 +7,7 @@
     source: "assignment",
     title: "Information, the Cramér–Rao bound and standard errors",
     difficulty: "Hard",
+    exam: "Q1",
     topics: ["info", "mle", "estimation"],
     hint: {
       text: `Two routes to the same information: $I(\\theta) = -\\mathrm{E}(\\ell'')$ and $I(\\theta) = \\mathrm{Var}(U)$. Then compare $1/I(\\theta)$ with the variance you found in Assignment 1, and use the delta method for the reparametrised mean.`,
@@ -109,6 +110,7 @@ Reassuringly, this interval comfortably contains the sample mean $\\bar{x} = 10.
     source: "assignment",
     title: "Estimating $\\sigma$ from residuals, reparametrisation and leverage",
     difficulty: "Hard",
+    exam: "Q2",
     topics: ["regression", "estimation", "diagnostics"],
     hint: {
       text: `$e_i \\sim \\mathrm{N}(0,\\sigma^{2}(1-h_{ii}))$, so $\\mathrm{E}|e_i| = \\sigma\\sqrt{2/\\pi}\\sqrt{1-h_{ii}}$. Linearity of expectation needs no independence — that is the answer to (a)(ii). For (b) expand $(\\mathbf{X}\\mathbf{A})^{\\top}(\\mathbf{X}\\mathbf{A})$ and use $(\\mathbf{P}\\mathbf{Q})^{-1} = \\mathbf{Q}^{-1}\\mathbf{P}^{-1}$.`,
@@ -275,6 +277,7 @@ In both cases the leverage is $1/n$ plus the observation's share of the variatio
     source: "assignment",
     title: "Delivery times: regression, collinearity and influence",
     difficulty: "Medium",
+    exam: "Q2",
     topics: ["regression", "diagnostics"],
     hint: {
       text: `$\\mathrm{VIF} = 1/(1-R^{2})$ from regressing each covariate on the others. For influence you need <em>both</em> a large residual and leverage — a high-leverage point that sits on the fitted surface has a small Cook's distance.`,
@@ -402,6 +405,7 @@ Substantively, route 51 has an unusual combination of predictors (a mid-range di
     source: "assignment",
     title: "Estimating the mean when variance equals mean",
     difficulty: "Hard",
+    exam: "Q1",
     topics: ["estimation", "info", "mle"],
     hint: {
       text: `Write the score for $\\mathrm{N}(\\theta,\\theta)$ carefully — both the mean and the variance depend on $\\theta$. The key distinction is the class each theorem covers: Cramér–Rao covers all unbiased estimators, Gauss–Markov only linear ones.`,

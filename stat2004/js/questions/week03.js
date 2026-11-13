@@ -6,6 +6,7 @@
     label: "Question 1",
     title: "Maximum likelihood for the geometric distribution",
     difficulty: "Easy",
+    exam: "Q1",
     topics: ["mle"],
     hint: {
       text: `Write the likelihood as $p^{n}(1-p)^{S-n}$. The score is $n/p - (S-n)/(1-p)$; to prove it is a global maximum, check the sign of $\\ell'$ either side of the stationary point — and treat $S = n$ on its own.`,
@@ -55,6 +56,7 @@ which is maximised at the boundary $p = 1$. The formula $\\hat{p} = n/S$ also re
     label: "Question 2",
     title: "Existence and uniqueness of an MLE on a closed interval",
     difficulty: "Hard",
+    exam: "Q1",
     topics: ["mle", "testing"],
     hint: {
       text: `Existence comes from continuity on the closed interval $[-1,1]$. Uniqueness comes from the sign of $U'(\\theta)$. For (d), ask what happens when every observation has the same sign.`,
@@ -101,6 +103,7 @@ so $\\ell$ is increasing on the whole interval and $\\hat{\\theta} = 1$. Similar
     label: "Question 3",
     title: "MLE for $U[\\theta, 2\\theta]$: consistency, bias and MSE",
     difficulty: "Hard",
+    exam: "Q1",
     topics: ["mle", "estimation", "sampling"],
     hint: {
       text: `The likelihood is an indicator function, not something you can differentiate. Write down where it is non-zero and note that $\\theta^{-n}$ decreases in $\\theta$, so you want the smallest admissible $\\theta$. For (c) use $P(X_{(n)} < c) = \\left(\\frac{c-\\theta}{\\theta}\\right)^{n}$.`,
@@ -167,6 +170,7 @@ Also $\\mathrm{Bias}(\\hat{\\theta})^{2} = \\dfrac{\\theta^{2}}{4(n+1)^{2}}$. He
     label: "Question 4",
     title: "Estimating $\\exp(\\mu)$ when $X \\sim \\mathrm{N}(\\mu,1)$",
     difficulty: "Easy",
+    exam: "Q1",
     topics: ["mle", "estimation"],
     hint: {
       text: `Invariance gives the MLE of $\\exp(\\mu)$ straight away. To check unbiasedness use the normal mgf with $t = 1$ and the fact that $\\bar{X} \\sim \\mathrm{N}(\\mu, 1/n)$.`,

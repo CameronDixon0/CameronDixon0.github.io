@@ -6,6 +6,7 @@
     label: "Question 1",
     title: "Challenger O-rings: $T_{50}$, the delta method and changing units",
     difficulty: "Medium",
+    exam: "Q3",
     topics: ["logistic", "mle", "info"],
     hint: {
       text: `$T_{50}$ is where the log-odds are zero, so $T_{50} = -\\beta_0/\\beta_1$; invariance gives the estimate. For the standard error use the delta method with $\\nabla g = (-1/\\beta_1,\\; \\beta_0/\\beta_1^{2})$.`,
@@ -85,6 +86,7 @@ The fitted probabilities do not change, because the re-expressed coefficients gi
     label: "Question 2",
     title: "Kyphosis: interpreting a logistic fit and checking it",
     difficulty: "Medium",
+    exam: "Q3",
     topics: ["logistic", "diagnostics"],
     hint: {
       text: `Coefficients live on the log-odds scale: $\\exp(\\beta)$ is a multiplicative change in the odds. Watch the units — Age is in months, so a one-year change is $12$ units of Age.`,
@@ -180,6 +182,7 @@ Consequently every fitted regression coefficient changes sign. The fitted probab
     label: "Question 3",
     title: "Wells data: interpreting odds and checking the mean structure",
     difficulty: "Easy",
+    exam: "Q3",
     topics: ["logistic", "diagnostics"],
     hint: {
       text: `Same log-odds reading as the previous question. For the binned residual plots, a systematic pattern against a covariate is evidence that the <em>functional form</em> for that covariate is wrong, not that the model is useless.`,

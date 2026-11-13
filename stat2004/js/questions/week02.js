@@ -6,6 +6,7 @@
     label: "Question 1",
     title: "Laplace's estimator of a Bernoulli proportion",
     difficulty: "Medium",
+    exam: "Q1",
     topics: ["sampling", "estimation", "distributions"],
     hint: {
       text: `$S$ is a sum of independent Bernoulli trials, so name its distribution first. Then the bias comes from linearity of expectation and the MSE from $\\mathrm{Var}(S)/(n+2)^2$ plus the squared bias. Part (d) is just a quadratic inequality in $p$.`,
@@ -60,6 +61,7 @@ that is, for $p$ close to $1/2$ — the region where Laplace's shrinkage towards
     label: "Question 2",
     title: "Estimation for the exponential rate parameter",
     difficulty: "Medium",
+    exam: "Q1",
     topics: ["sampling", "moments", "estimation", "distributions"],
     hint: {
       text: `Build the mgf of $\\bar{X}$ as the product of the individual mgfs evaluated at $t/n$, and match it to a Gamma mgf. Then $\\mathrm{E}(1/\\bar{X})$ follows immediately from the given Gamma moments — no integration needed.`,
@@ -177,6 +179,7 @@ using the stated integrability of $|x|g(x)$. Hence the expectation exists and $M
     label: "Question 4",
     title: "Consistency and a simulation study for the geometric",
     difficulty: "Medium",
+    exam: "Q1",
     topics: ["estimation", "sampling", "simulation"],
     hint: {
       text: `Consistency is the law of large numbers plus the continuous mapping theorem applied to $h(x) = 1/x$. For (b) you do not need to compute anything — look at whether $n\\times$bias and $n\\times$variance settle down as $n$ grows.`,
