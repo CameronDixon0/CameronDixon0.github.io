@@ -7,6 +7,10 @@
     title: "Laplace's estimator of a Bernoulli proportion",
     difficulty: "Medium",
     topics: ["sampling", "estimation", "distributions"],
+    hint: {
+      text: `$S$ is a sum of independent Bernoulli trials, so name its distribution first. Then the bias comes from linearity of expectation and the MSE from $\\mathrm{Var}(S)/(n+2)^2$ plus the squared bias. Part (d) is just a quadratic inequality in $p$.`,
+      refs: ["l01", "l02"]
+    },
     stem: `Suppose $X_1,\\dots,X_n$ is a random sample from a $\\mathrm{Bernoulli}(p)$ distribution. Laplace's estimator of the proportion $p$ is
 <div class="display">$$\\hat{p}_L = \\frac{\\sum_{j=1}^{n} X_j + 1}{n + 2}.$$</div>`,
     parts: [
@@ -57,6 +61,10 @@ that is, for $p$ close to $1/2$ — the region where Laplace's shrinkage towards
     title: "Estimation for the exponential rate parameter",
     difficulty: "Medium",
     topics: ["sampling", "moments", "estimation", "distributions"],
+    hint: {
+      text: `Build the mgf of $\\bar{X}$ as the product of the individual mgfs evaluated at $t/n$, and match it to a Gamma mgf. Then $\\mathrm{E}(1/\\bar{X})$ follows immediately from the given Gamma moments — no integration needed.`,
+      refs: ["l01", "l02"]
+    },
     stem: `Suppose $X_1,\\dots,X_n$ is a random sample from an $\\mathrm{Exp}(\\lambda)$ distribution, where $\\lambda > 0$ is the rate parameter so the pdf is $f(x;\\lambda) = \\lambda e^{-\\lambda x}$ for $x \\ge 0$ and $f(x;\\lambda) = 0$ for $x < 0$.
 
 It may be helpful to know that if $Y \\sim \\mathrm{Gamma}(\\alpha,\\beta)$, then
@@ -115,6 +123,10 @@ Because $c^2 < 1$ and the squared bias is non-negative, $\\mathrm{MSE}(\\tilde{\
     title: "Unbiasedness of the sample median",
     difficulty: "Hard",
     topics: ["sampling", "estimation", "distributions"],
+    hint: {
+      text: `For (a), split the integral at $\\theta$ and substitute $v = u-\\theta$; symmetry of $g$ does the rest. For (b), show the density of $M$ is symmetric about $\\theta$, then check the expectation exists using $\\int |x|g(x)dx < \\infty$.`,
+      refs: ["l01", "l02"]
+    },
     stem: `Suppose $X_1,\\dots,X_{2n+1}$ is a random sample. The statistical model is $\\mathcal{F} = \\{f(x;\\theta) = g(x-\\theta) : \\theta \\in \\mathbb{R}\\}$, where $g$ is some fixed pdf that is symmetric about $0$ and satisfies
 <div class="display">$$\\int_{-\\infty}^{\\infty} |x|\\,g(x)\\,dx < \\infty.$$</div>
 Using results from ordered statistics, it can be shown that the sample median $M$ has sampling distribution with pdf
@@ -166,6 +178,10 @@ using the stated integrability of $|x|g(x)$. Hence the expectation exists and $M
     title: "Consistency and a simulation study for the geometric",
     difficulty: "Medium",
     topics: ["estimation", "sampling", "simulation"],
+    hint: {
+      text: `Consistency is the law of large numbers plus the continuous mapping theorem applied to $h(x) = 1/x$. For (b) you do not need to compute anything — look at whether $n\\times$bias and $n\\times$variance settle down as $n$ grows.`,
+      refs: ["l02", "l05"]
+    },
     stem: `Suppose $X_1,\\dots,X_n$ is a random sample from a $\\mathrm{Geometric}(p)$ distribution whose support is the positive integers $\\{1,2,\\dots\\}$. As $\\mathrm{E}_p(X) = 1/p$, the method of moments estimator is $\\hat{p} = 1/\\bar{X}$.`,
     parts: [
       { l: "a", t: `Is $\\hat{p}$ a consistent estimator of $p$? Justify your answer.` },
@@ -224,6 +240,10 @@ Two conclusions follow. First, $\\mathrm{MSE}(\\hat{p}) \\to 0$ at rate $1/n$, w
     title: "Method of moments for the negative binomial",
     difficulty: "Medium",
     topics: ["moments", "estimation"],
+    hint: {
+      text: `Set the population mean and variance equal to the sample versions, then divide the second equation by the first to isolate $p$. Substitute back to get $r$.`,
+      refs: ["l01", "l02"]
+    },
     stem: `The negative binomial distribution is used to model over-dispersed counts, that is counts where the variance is larger than the mean. Write $\\mathrm{NB}(r,p)$ for the distribution with probability mass function
 <div class="display">$$f(x) = \\binom{x+r-1}{r-1} p^{r} (1-p)^{x}, \\quad x = 0,1,2,\\dots,$$</div>
 where $r \\in (0,\\infty)$ and $p \\in (0,1]$. If $X \\sim \\mathrm{NB}(r,p)$, then

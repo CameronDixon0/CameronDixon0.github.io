@@ -7,6 +7,10 @@
     title: "Maximum likelihood for the geometric distribution",
     difficulty: "Easy",
     topics: ["mle"],
+    hint: {
+      text: `Write the likelihood as $p^{n}(1-p)^{S-n}$. The score is $n/p - (S-n)/(1-p)$; to prove it is a global maximum, check the sign of $\\ell'$ either side of the stationary point — and treat $S = n$ on its own.`,
+      refs: ["l03", "l04"]
+    },
     stem: `The number of trials required to obtain the first success is modelled by the geometric distribution, with pmf
 <div class="display">$$f(x;p) = p(1-p)^{x-1}, \\quad x = 1,2,3,\\dots, \\quad p \\in (0,1].$$</div>
 Suppose $X_1,\\dots,X_n$ is a random sample from this distribution.`,
@@ -52,6 +56,10 @@ which is maximised at the boundary $p = 1$. The formula $\\hat{p} = n/S$ also re
     title: "Existence and uniqueness of an MLE on a closed interval",
     difficulty: "Hard",
     topics: ["mle", "testing"],
+    hint: {
+      text: `Existence comes from continuity on the closed interval $[-1,1]$. Uniqueness comes from the sign of $U'(\\theta)$. For (d), ask what happens when every observation has the same sign.`,
+      refs: ["l03"]
+    },
     stem: `Suppose $X_1,\\dots,X_n$ is a random sample from a distribution with probability density function
 <div class="display">$$f(x;\\theta) = \\tfrac{1}{2}(1+\\theta x), \\quad x \\in (-1,1), \\quad \\theta \\in [-1,1].$$</div>`,
     parts: [
@@ -94,6 +102,10 @@ so $\\ell$ is increasing on the whole interval and $\\hat{\\theta} = 1$. Similar
     title: "MLE for $U[\\theta, 2\\theta]$: consistency, bias and MSE",
     difficulty: "Hard",
     topics: ["mle", "estimation", "sampling"],
+    hint: {
+      text: `The likelihood is an indicator function, not something you can differentiate. Write down where it is non-zero and note that $\\theta^{-n}$ decreases in $\\theta$, so you want the smallest admissible $\\theta$. For (c) use $P(X_{(n)} < c) = \\left(\\frac{c-\\theta}{\\theta}\\right)^{n}$.`,
+      refs: ["l03", "l02"]
+    },
     stem: `Suppose $X_1,\\dots,X_n$ is a random sample from $U[\\theta, 2\\theta]$, the uniform distribution on $[\\theta, 2\\theta]$, where $\\theta > 0$.`,
     parts: [
       { l: "a", t: `Write down the likelihood function $L(\\theta)$ for this model.` },
@@ -156,6 +168,10 @@ Also $\\mathrm{Bias}(\\hat{\\theta})^{2} = \\dfrac{\\theta^{2}}{4(n+1)^{2}}$. He
     title: "Estimating $\\exp(\\mu)$ when $X \\sim \\mathrm{N}(\\mu,1)$",
     difficulty: "Easy",
     topics: ["mle", "estimation"],
+    hint: {
+      text: `Invariance gives the MLE of $\\exp(\\mu)$ straight away. To check unbiasedness use the normal mgf with $t = 1$ and the fact that $\\bar{X} \\sim \\mathrm{N}(\\mu, 1/n)$.`,
+      refs: ["l03", "l02"]
+    },
     stem: `Suppose $X_1,\\dots,X_n$ is a random sample from $\\mathrm{N}(\\mu,1)$.`,
     parts: [
       { l: "a", t: `Determine the MLE of $\\exp(\\mu)$. (You can use what you know about the MLE of $\\mu$.)` },
@@ -191,6 +207,10 @@ is an unbiased estimator of $\\exp(\\mu)$.`
     title: "Zero-inflated Poisson: log-likelihood and numerical MLE",
     difficulty: "Medium",
     topics: ["mle", "simulation"],
+    hint: {
+      text: `Split the log-likelihood into the $x_i = 0$ terms and the $x_i > 0$ terms. In part (b), compare $\\hat{\\pi}$ with the observed proportion of zeros — that is the whole point of the model.`,
+      refs: ["l03", "l04"]
+    },
     stem: `The zero-inflated Poisson distribution has probability mass function
 <div class="display">$$f(x;\\pi,\\lambda) = \\begin{cases} \\pi + (1-\\pi)e^{-\\lambda}, &amp; x = 0, \\\\[4pt] (1-\\pi)e^{-\\lambda}\\dfrac{\\lambda^{x}}{x!}, &amp; x = 1,2,\\dots, \\end{cases}$$</div>
 where $0 \\le \\pi \\le 1$ and $\\lambda > 0$. It is used to model count data with more zeros than would be expected under the usual Poisson distribution.

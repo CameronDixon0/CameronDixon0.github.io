@@ -8,6 +8,10 @@
     title: "Testing whether two exponential rates are equal",
     difficulty: "Hard",
     topics: ["lrt", "testing", "distributions"],
+    hint: {
+      text: `Under $H_0$ all fifteen observations share one rate, so pool them. The ratio collapses to a constant times $T^{8}(1-T)^{7}$, which is maximised at $T = 8/15$ — hence rejection for $T$ far from $8/15$ in either direction.`,
+      refs: ["w8l3", "w9l12"]
+    },
     stem: `Let $X_1,\\dots,X_8$ be a random sample from an exponential distribution with density
 <div class="display">$$f_X(x) = \\lambda e^{-\\lambda x}, \\qquad x \\ge 0,$$</div>
 and $Y_1,\\dots,Y_7$ an independent sample from an exponential distribution with density
@@ -91,6 +95,10 @@ These two one-sided tests are different, so no single test can be most powerful 
     title: "Comparing ratings across two groups of users",
     difficulty: "Medium",
     topics: ["tables", "testing"],
+    hint: {
+      text: `These are <em>categories</em>, not measurements, so a chi-squared test of homogeneity is the right tool — compare the observed counts with $E_{ij} = \\text{row}\\times\\text{col}/n$. Then think hard about the independence assumption for an online poll.`,
+      refs: ["w10l3"]
+    },
     stem: `A recent poll asked social media users for their opinion on a photo-sharing app removing the number of "likes" from posts, on a five-point scale: $1$ = strongly disagree, $2$ = disagree, $3$ = neutral, $4$ = agree, $5$ = strongly agree.
 
 Of the $n = 198$ respondents, $98$ were "influencers" (over $10{,}000$ followers) and $100$ were regular users. The counts are
@@ -164,6 +172,10 @@ A $t$ test would also implicitly assume normality of the responses within each g
     title: "Tuberculosis severity and blood type",
     difficulty: "Medium",
     topics: ["tables", "gof", "testing"],
+    hint: {
+      text: `Multinomial data, so $-2\\log\\Lambda = 2\\sum O\\log(O/E)$ with $E_{ij} = x_{i\\bullet}x_{\\bullet j}/n$ and $(3-1)(4-1) = 6$ degrees of freedom. The cell with only $3$ counts is your cue to consider a permutation test.`,
+      refs: ["w10l12", "w10l3"]
+    },
     stem: `Overfield and Klauber (1980) published data on the incidence of tuberculosis in relation to ABO blood groups in a sample of Eskimos:
 <table>
 <tr><th>tuberculosis severity</th><th>O</th><th>A</th><th>AB</th><th>B</th></tr>
@@ -282,6 +294,10 @@ The simulated $p$-value is $0.0169$, very close to the asymptotic $0.0176$ from 
     title: "Vitamin B12, antibiotics and weight gain: a two-way ANOVA",
     difficulty: "Medium",
     topics: ["anova", "regression"],
+    hint: {
+      text: `Two-way ANOVA: get $\\mathrm{SS}_{AB}$ from the decomposition $\\mathrm{SS}_{\\text{Total}} - \\mathrm{SS}_A - \\mathrm{SS}_B - \\mathrm{SS}_{\\text{residual}}$, and $\\mathrm{MS} = \\mathrm{SS}/\\mathrm{df}$ throughout. Assess the interaction before the main effects.`,
+      refs: ["w12l3", "w11l3"]
+    },
     stem: `A trial examined the effects of vitamin B12 dietary supplements and antibiotics on weight gain in pigs. Twelve adult pigs were randomly divided into four groups (standard chow; chow with vitamin B12; chow with antibiotics; chow with both). After one week their weight gain (in grams) was recorded.
 
 We model the weight gains using a two-way ANOVA with interaction:
@@ -406,6 +422,10 @@ Looking at the raw weight gains, vitamin B12 has a large positive effect when an
     title: "GLRT for a Pareto tail index",
     difficulty: "Hard",
     topics: ["lrt", "mle", "testing"],
+    hint: {
+      text: `The likelihood increases in $\\nu$ until the support constraint binds, so $\\hat{\\nu} = \\min X_i$ regardless of $\\theta$. Then $\\Lambda = (T/n)^{n}e^{n-T}$, which is increasing in $T$ up to $T = n$ and decreasing after.`,
+      refs: ["w8l3", "l03"]
+    },
     stem: `Let $X_1,\\dots,X_n$ be iid random variables from a Pareto distribution with density
 <div class="display">$$f(x\\mid\\theta,\\nu) = \\begin{cases}\\dfrac{\\theta\\nu^{\\theta}}{x^{\\theta+1}}, &amp; x \\ge \\nu, \\\\[6pt] 0, &amp; \\text{otherwise},\\end{cases}$$</div>
 where $\\theta, \\nu > 0$ are two unknown parameters.`,
@@ -471,6 +491,10 @@ Hence <em>small</em> values of $\\Lambda$ correspond to $T$ being either small o
     title: "A pivot when the variance grows with the mean",
     difficulty: "Medium",
     topics: ["ci", "sampling", "distributions"],
+    hint: {
+      text: `Standardise: $(X_i-\\mu)/\\mu \\sim \\mathrm{N}(0,1)$ because the variance is $\\mu^{2}$. Averaging gives $(\\bar{X}-\\mu)/(\\mu/\\sqrt{n}) \\sim \\mathrm{N}(0,1)$ — a pivot, so invert the probability statement.`,
+      refs: ["w7l12", "l06"]
+    },
     stem: `In some settings the measurement variability increases as the measurement itself increases. Rather than model such measurements as $\\mathrm{N}(\\mu,\\sigma^{2})$, one may use $\\mathrm{N}(\\mu,\\mu^{2})$, in which the variance increases with the mean.
 
 Let $X_1,\\dots,X_n \\overset{\\text{iid}}{\\sim} \\mathrm{N}(\\mu,\\mu^{2})$, where the mean $\\mu > 0$ is an unknown parameter.`,

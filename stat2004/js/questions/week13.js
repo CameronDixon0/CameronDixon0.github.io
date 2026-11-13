@@ -7,6 +7,10 @@
     title: "Comparing four control groups: ANOVA versus pairwise testing",
     difficulty: "Medium",
     topics: ["anova", "multiplicity", "testing"],
+    hint: {
+      text: `With five observations per group the quartiles of a boxplot are barely meaningful, so show the individual points. The ANOVA has $(3,16)$ degrees of freedom. For the pairwise test, remember the pair was chosen after looking at the data — Bonferroni over the six comparisons.`,
+      refs: ["w11l12", "w11l3"]
+    },
     stem: `A large study investigating the use of carbon tetrachloride as a worm killer is described in Armitage (1983). We focus on a subset of the experiment involving four control groups. If there are differences among these four control groups, this may be attributable to variations in experimental conditions, lab settings, lab technicians and so on — so a more carefully controlled experiment may be needed for follow-up studies.
 
 The numbers of worms in each of five rats under each of four control groups at the end of the study are
@@ -111,6 +115,10 @@ If instead the $t$ test uses the pooled residual standard deviation from all fou
     title: "Laptops and scrotal temperatures",
     difficulty: "Medium",
     topics: ["anova", "diagnostics"],
+    hint: {
+      text: `A balanced one-way ANOVA with $n = 50$ per group, so the CLT covers moderate non-normality. The assumption worth checking carefully is constant variance.`,
+      refs: ["w11l12", "w10l3"]
+    },
     stem: `Studies have suggested that heating the scrotum by just $1\\,^{\\circ}\\mathrm{C}$ can temporarily reduce sperm count and quality, while a $2\\,^{\\circ}\\mathrm{C}$ increase can cause long-term irreversible damage.
 
 Sheynkin et al. (2011) examined the effect of using a laptop computer on the lap on changes in scrotal temperature. A total of 150 male participants were randomly assigned to one of three sitting conditions (legs together, legs apart, and legs together with a laptop cooling pad). Each participant used the same laptop to watch the same video for 60 minutes, after which the change in scrotal temperature was recorded. The research question is whether there are differences in scrotal temperature change between the three sitting conditions.
@@ -168,6 +176,10 @@ If the ANOVA gives no significant difference, the honest answer is that this stu
     title: "Two-way ANOVA of survival times by poison and treatment",
     difficulty: "Hard",
     topics: ["anova", "transform", "diagnostics"],
+    hint: {
+      text: `Assess the interaction <em>before</em> the main effects — if it is non-zero, main effects on their own are misleading. For constant variance compare the within-cell standard deviations; a reciprocal is a variance-stabilising transformation with a natural interpretation as a rate.`,
+      refs: ["w12l3", "w11l3"]
+    },
     stem: `The following table gives survival times (in hours) for animals in an experiment with three poisons, four treatments and four replications per experimental setting.
 <table>
 <tr><th rowspan="2">Poison</th><th colspan="2">A</th><th colspan="2">B</th><th colspan="2">C</th><th colspan="2">D</th></tr>
@@ -281,6 +293,10 @@ The main substantive conclusions are the same either way — both poison and tre
     title: "A two-way ANOVA with interactions written as a linear model",
     difficulty: "Medium",
     topics: ["anova", "regression"],
+    hint: {
+      text: `Count the parameters: $1 + 2 + 3 + 6 = 12$ columns for a $3\\times4$ table. With treatment coding the baseline cell is poison I, treatment A, so $\\mu$ is that cell's mean.`,
+      refs: ["w12l3", "w12l12"]
+    },
     stem: `Recall that a linear model is any model that can be written in the form
 <div class="display">$$Y_i = \\mathbf{x}_i^{\\top}\\boldsymbol{\\beta} + \\varepsilon_i,$$</div>
 where $\\mathbf{x}_i$ is a vector of covariates for observation $i$, $\\boldsymbol{\\beta}$ is a vector of regression parameters and each $\\varepsilon_i$ is a random variable with mean $0$. In vector–matrix form,

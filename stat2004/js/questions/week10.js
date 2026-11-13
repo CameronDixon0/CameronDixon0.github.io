@@ -7,6 +7,10 @@
     title: "Likelihood ratio test for exponential bulb lifetimes",
     difficulty: "Medium",
     topics: ["lrt", "testing"],
+    hint: {
+      text: `Turn the claim into a value of $\\lambda$: $P(X > 24) = 0.9$ means $\\lambda_0 = -\\log(0.9)/24$. Then form the likelihood ratio for $\\lambda_0$ against $\\lambda_1 > \\lambda_0$ and note it is small exactly when $X$ is small.`,
+      refs: ["w8l3", "w9l12"]
+    },
     stem: `A manufacturer advertises that $90\\%$ of their LED light bulbs last over 24 months before failure. To test whether this claim is an exaggeration, one light bulb is randomly selected and tested, and its time-to-failure $X$ is recorded. Let $X \\sim \\mathrm{Exp}(\\lambda)$, with pdf and cdf
 <div class="display">$$f_\\lambda(x) = \\lambda e^{-\\lambda x} \\quad\\text{and}\\quad F_\\lambda(x) = 1 - e^{-\\lambda x}, \\qquad x \\ge 0,$$</div>
 where $\\lambda > 0$ is an unknown parameter, the instantaneous rate of failure.`,
@@ -63,6 +67,10 @@ If the true failure rate were $0.0044$, a lifetime as short as 12.4 months (or s
     title: "Testing the precision of an apparatus",
     difficulty: "Hard",
     topics: ["lrt", "testing", "distributions"],
+    hint: {
+      text: `With a known mean, $\\sum (X_i - \\mu)^2/\\sigma_0^2 \\sim \\chi^{2}_n$; once you estimate $\\mu$ you lose a degree of freedom and get $\\chi^{2}_{n-1}$. Set the critical value at the upper $5\\%$ point, and remember the sample mean and variance are independent for normal data.`,
+      refs: ["w8l3", "w9l12"]
+    },
     stem: `In engineering, the precision of a random process is $1/\\sigma^{2}$, where $\\sigma^{2}$ is its variance. Higher precision means smaller variance. A machine in the physics lab that measures gravity has been correctly calibrated, so measurements from it follow a normal distribution with mean $\\mu = 9.807\\,\\mathrm{m/s^{2}}$ and some variance $\\sigma^{2}$. The industry-standard for the allowable variance of such machines is $\\sigma_0^{2}$. We make $n$ independent measurements $X_1,\\dots,X_n$ on this machine at random times over three days.`,
     parts: [
       { l: "a", t: `Write down the null and alternative hypotheses in terms of $\\sigma^{2}$.` },
@@ -146,6 +154,10 @@ almost double the nominal $5\\%$. This is a multiple-testing problem.`
     title: "Sums of independent Poisson random variables",
     difficulty: "Medium",
     topics: ["distributions"],
+    hint: {
+      text: `This is a convolution: sum over the ways the first observation can take the value $x_1$, then collapse the sum with the binomial theorem.`,
+      refs: ["w10l12", "l01"]
+    },
     stem: `The Poisson distribution is useful for modelling counts over a period of time, space or volume. This question investigates the distribution of the sum of independent Poisson random variables.`,
     parts: [
       { l: "a", t: `Let $y$ be any nonnegative integer. Show, by induction or otherwise, the binomial theorem:
@@ -204,6 +216,10 @@ using the binomial theorem from part (a). This is exactly the $\\mathrm{Poisson}
     title: "Hypothesis tests for the Poisson call rate",
     difficulty: "Medium",
     topics: ["testing", "mle", "distributions"],
+    hint: {
+      text: `Under $H_0$ the total count is $\\mathrm{Poisson}(15 \\times 7.3)$. Rejecting for $\\bar{X} \\ge c$ is the same as rejecting for the total $\\ge 15c$ — find the smallest attainable level not exceeding $5\\%$.`,
+      refs: ["w9l12", "w9l3"]
+    },
     stem: `Suppose the number of enquiries coming into a call-centre follows a Poisson distribution. An employee is paid on the assumption that the call rate is $\\lambda_0 = 7.3$ calls per hour, but suspects the true rate is higher. The company randomly samples $n = 15$ one-hour blocks over two weeks and records $X_1,\\dots,X_{15}$.`,
     parts: [
       { l: "a", t: `Write down the null and alternative hypotheses being tested.` },
@@ -276,6 +292,10 @@ If the call rate really were only $7.3$ per hour, a total this large or larger w
     title: "One-sided confidence intervals for the Poisson rate",
     difficulty: "Medium",
     topics: ["ci", "testing", "distributions"],
+    hint: {
+      text: `Invert the test: the confidence set is exactly the set of $\\lambda_0$ values you would <em>not</em> reject. So find the boundary $\\lambda_0$ at which the $p$-value crosses $0.05$.`,
+      refs: ["w9l3", "w7l12"]
+    },
     stem: `In the lectures it was shown that there is generally no pivot transformation for discrete data such as Binomial or Poisson data. For large samples the central limit theorem approximates the distribution of $\\bar{X}$, but with only $n = 15$ samples that is not justified. Instead we can construct confidence intervals for the Poisson rate $\\lambda$ by inverting hypothesis tests.
 
 Using the observed data from the previous exercise,
@@ -326,6 +346,10 @@ Note this bound is larger (tighter) than the $95\\%$ bound from part (c): a lowe
     title: "Power curves, sample size and relative effect size",
     difficulty: "Hard",
     topics: ["testing", "lrt", "simulation"],
+    hint: {
+      text: `The power depends on $\\sqrt{n}(c-\\mu_1)/\\sigma$, so only the <em>relative</em> effect $\\delta = \\mu_1/\\sigma$ and the sample size matter — which is why the $\\sigma = 1$ and $\\sigma = 10$ curves have the same shape.`,
+      refs: ["w9l3", "w8l3"]
+    },
     stem: `Let $X_1,X_2,\\dots,X_n$ be a random sample from a $\\mathrm{N}(\\mu, 1^{2})$ distribution, where the population mean $\\mu$ is an unknown parameter.`,
     parts: [
       { l: "a", t: `Construct the likelihood ratio test of $H_0 : \\mu = 0$ versus $H_1 : \\mu = \\mu_1 > 0$, and show that it reduces to the decision rule $\\{\\bar{X} \\ge c\\}$ for some critical value $c$.` },

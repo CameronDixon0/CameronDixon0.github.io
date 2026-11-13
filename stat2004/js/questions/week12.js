@@ -7,6 +7,10 @@
     title: "Grades and majors: association in a contingency table",
     difficulty: "Medium",
     topics: ["tables", "testing"],
+    hint: {
+      text: `A test of association: $H_0$ says $p_{ij} = p_{i\\bullet}p_{\\bullet j}$. R's warning is about expected counts below $5$, which is exactly when the exact (permutation) test is preferable.`,
+      refs: ["w10l3"]
+    },
     stem: `Grades from a statistics class, classified by the students' majors, are tabulated below.
 <table>
 <tr><th>Grade</th><th>Psychology</th><th>Biology</th><th>Other</th><th>Total</th></tr>
@@ -85,6 +89,10 @@ If there were no association between grades and majors, counts at least this unu
     title: "Weight gain and protein diet: a one-way ANOVA by hand",
     difficulty: "Easy",
     topics: ["anova"],
+    hint: {
+      text: `$\\mathrm{SS}_{\\text{diet}} = 5\\sum_j(\\bar{y}_{j\\bullet}-\\bar{y}_{\\bullet\\bullet})^2$ and $\\mathrm{SS}_{\\text{residual}}$ is the within-group sum. Degrees of freedom: $3-1 = 2$ between, and $3\\times(5-1) = 12$ within.`,
+      refs: ["w11l12", "w11l3"]
+    },
     stem: `To investigate weight gain and diet quality, 15 male weaning rats were randomly assigned to one of three protein diets. Their weight gains (in grams) after one week were
 <table>
 <tr><th>Diet</th><th colspan="5">weight gain (g)</th><th>group mean</th></tr>
@@ -186,6 +194,10 @@ confirms the hand calculation in part (f): $614.14$ is $1228.27/2$, and the $F$ 
     title: "Two-group ANOVA versus the two-sample $t$ test",
     difficulty: "Medium",
     topics: ["anova", "testing", "distributions"],
+    hint: {
+      text: `The identity $F = T^{2}$ is the whole point. Write $\\mathrm{SS}_{\\text{group}}$ in terms of $\\bar{y}_{1\\bullet}-\\bar{y}_{2\\bullet}$ using the weighted expression for the overall mean.`,
+      refs: ["w11l12", "w12l12"]
+    },
     stem: `Consider the one-way ANOVA model
 <div class="display">$$Y_{ji} = \\mu_j + \\varepsilon_{ji}, \\qquad j = 1,2, \\quad i = 1,2,\\dots,r_j,$$</div>
 where $\\varepsilon_{ji} \\overset{\\text{iid}}{\\sim} \\mathrm{N}(0,\\sigma^{2})$ across both indices. The number of replications need not be equal in the two groups.`,
@@ -243,6 +255,10 @@ The pooled variance is related to the residual sum of squares by $S_{\\text{pool
     title: "Working with different ANOVA parametrisations",
     difficulty: "Hard",
     topics: ["anova", "mle"],
+    hint: {
+      text: `Maximise $\\ell$ over $(\\mu,\\alpha_j,\\sigma^2)$. The constraint $\\sum_j \\alpha_j = 0$ is what makes $\\hat{\\mu}$ the overall mean; the contrast constraint $\\alpha_1 = 0$ instead makes $\\hat{\\mu}$ the mean of group 1.`,
+      refs: ["w12l12"]
+    },
     stem: `The one-way ANOVA model in the mean parametrisation is
 <div class="display">$$Y_{ji} = \\mu_j + \\varepsilon_{ji}, \\qquad j = 1,\\dots,J, \\quad i = 1,\\dots,r_j,$$</div>
 with $\\varepsilon_{ji} \\overset{\\text{iid}}{\\sim} \\mathrm{N}(0,\\sigma^{2})$. Under this parametrisation the $\\mu_j$ are the population group means.

@@ -8,6 +8,10 @@
     title: "Two competing confidence intervals for a variance",
     difficulty: "Medium",
     topics: ["ci", "distributions"],
+    hint: {
+      text: `$(n-1)S^{2}/\\sigma^{2} \\sim \\chi^{2}_{n-1}$ with $n = 18$, so $17S^{2}/\\sigma^{2} \\sim \\chi^{2}_{17}$. Invert $P(a \\le \\chi^{2}_{17} \\le b) = 0.95$ to get an interval of the form $(17S^{2}/b,\\; 17S^{2}/a)$.`,
+      refs: ["w7l12"]
+    },
     stem: `Measurements from a physics lab machine follow a normal distribution with some mean $\\mu$ and some variance $\\sigma^{2}$. To investigate the precision of this machine, $18$ independent measurements $X_1,\\dots,X_{18}$ are taken at random times over three days. Based on the sample variance
 <div class="display">$$S^{2} = \\frac{1}{17}\\sum_{i=1}^{18}(X_i - \\bar{X})^{2},$$</div>
 two competing confidence intervals for the unknown variance $\\sigma^{2}$ are proposed:
@@ -56,6 +60,10 @@ whereas Alan's has relative width $2.653 - 0.598 = 2.055$. Ross's interval is ab
     title: "Prior and posterior beliefs with a Beta$(1,8)$ prior",
     difficulty: "Medium",
     topics: ["bayes", "distributions", "ci"],
+    hint: {
+      text: `The prior $\\propto (1-p)^{7}$ is $\\mathrm{Beta}(1,8)$ — think of it as $1$ success and $8$ failures. The posterior adds $x$ to the first parameter and $n-x$ to the second.`,
+      refs: ["w8l12"]
+    },
     stem: `Consider the Skittles versus M&amp;Ms example from the lectures. Suppose our prior belief about the underlying true proportion $p$ of Skittles is characterised by
 <div class="display">$$f(p) \\propto (1-p)^{7}, \\qquad 0 \\le p \\le 1.$$</div>`,
     parts: [
@@ -152,6 +160,10 @@ Note how different this interpretation is from a frequentist confidence interval
     title: "A confidence interval for the bound of a uniform distribution",
     difficulty: "Medium",
     topics: ["ci", "sampling", "mle"],
+    hint: {
+      text: `$|X_i| \\sim \\mathrm{Uniform}(0,\\theta)$, so $U_1 = |X_i|/\\theta \\sim \\mathrm{Uniform}(0,1)$. The MLE is the maximum of the $|X_i|$ because the likelihood is $\\theta^{-n}$ on a region that shrinks as $\\theta$ shrinks.`,
+      refs: ["w7l12", "l03"]
+    },
     stem: `Let $X_1,X_2,\\dots,X_n \\overset{\\text{iid}}{\\sim} \\mathrm{Uniform}(-\\theta,\\theta)$, where $\\theta \\ge 0$ is an unknown parameter.`,
     parts: [
       { l: "a", t: `State the distribution of $U_1 = |X_1|/\\theta$.` },
@@ -229,6 +241,10 @@ The correct statement is: "the procedure that produced this interval captures $\
     title: "Testing a failure probability: level, power, LRT and sample size",
     difficulty: "Medium",
     topics: ["testing", "lrt", "distributions"],
+    hint: {
+      text: `The level is $P(X \\le 15) + P(X \\ge 26)$ for $X \\sim \\mathrm{Bin}(50,0.4)$. For the LRT, note $\\Lambda$ is a constant times $(2/3)^{X}$, so it is decreasing in $X$ — that is why the rejection region is one-sided.`,
+      refs: ["w8l3", "w9l3"]
+    },
     stem: `A current industry-standard engineering model predicts that a certain type of concrete block has a $40\\%$ chance of failure under a two-tonne load. A civil engineer obtains $50$ independent samples of such blocks, subjects each to a two-tonne load, and records the total number $X$ of blocks that broke. She decides she will reject $H_0 : p = 0.4$ in favour of $H_1 : p \\neq 0.4$ if $X \\le 15$ or $X \\ge 26$.
 
 She then proposes an alternative model predicting a $50\\%$ failure probability, and wants to test whether her new model is more accurate than the current standard.`,
@@ -336,6 +352,10 @@ which has power $0.900$. Because the alternative $p = 0.5$ is close to the null 
     title: "Shortest confidence interval via the probability integral transform",
     difficulty: "Hard",
     topics: ["ci", "mle", "sampling"],
+    hint: {
+      text: `The probability integral transform gives $F(\\hat{\\theta}) = (\\hat{\\theta}/\\theta)^{2n} \\sim \\mathrm{Uniform}(0,1)$. Then differentiate the interval length with respect to $a$ and check its sign over $[0,0.05]$.`,
+      refs: ["w7l12", "w7l3"]
+    },
     stem: `Let $X_1,\\dots,X_n$ be an iid sample from a continuous distribution with density
 <div class="display">$$f_\\theta(x) = \\frac{2x}{\\theta^{2}}, \\qquad 0 \\le x \\le \\theta,$$</div>
 where $\\theta > 0$ is an unknown parameter.`,
@@ -413,6 +433,10 @@ We can be $95\\%$ confident that the true $\\theta$ that generated this dataset 
     title: "A distribution-free interval for the population median",
     difficulty: "Hard",
     topics: ["ci", "distributions", "simulation"],
+    hint: {
+      text: `Let $N$ be the number of observations below the median; $N \\sim \\mathrm{Bin}(17,0.5)$. The interval misses $m$ when $N \\le 4$ or $N \\ge 13$, so compute $2P(N \\le 4)$.`,
+      refs: ["w7l12", "w7l3"]
+    },
     stem: `Let $X_1,\\dots,X_{17}$ be a random sample of size $n = 17$ from some arbitrary continuous distribution with unknown population median $m$.`,
     parts: [
       { l: "a", t: `Show that the interval $[X_{(5)}, X_{(13)}]$ defines an (approximate) $95\\%$ confidence interval for the population median $m$. Here $X_{(5)}$ denotes the fifth smallest observation and $X_{(13)}$ the fifth largest.` },

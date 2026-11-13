@@ -70,6 +70,8 @@
 
   /* ----------------------------------------------------------------- state */
 
+  const LECTURES = window.LECTURES || {};
+
   const state = {
     topics: new Set(),
     diffs: new Set(),
@@ -78,7 +80,8 @@
     list: [],
     idx: 0,
     shuffled: false,
-    revealed: new Set()
+    revealed: new Set(),
+    hinted: new Set()
   };
 
   const $ = (id) => document.getElementById(id);
@@ -94,6 +97,7 @@
     card: $("card"),
     prev: $("prev"),
     next: $("next"),
+    hint: $("hint"),
     reveal: $("reveal")
   };
 
@@ -300,6 +304,34 @@
       .join(" · ");
   }
 
+  /* A hint gives a nudge towards the method plus links to the relevant lecture decks. */
+  function hintPanelHtml(q) {
+    const h = q.hint || {};
+    const refs = (h.refs || [])
+      .map((id) => LECTURES[id])
+      .filter(Boolean)
+      .map(
+        (l) =>
+          `<li><a href="${escapeHtml(l.file)}" target="_blank" rel="noopener">${escapeHtml(
+            l.label
+          )}</a></li>`
+      )
+      .join("");
+
+    const refsHtml = refs
+      ? `<div class="hint-refs">
+           <h4>Lecture notes</h4>
+           <ul>${refs}</ul>
+         </div>`
+      : "";
+
+    return `<section class="hint-panel">
+      <h3>Hint</h3>
+      <div class="hint-text">${blocks(h.text || "")}</div>
+      ${refsHtml}
+    </section>`;
+  }
+
   /* Typeset $...$ (inline) and $$...$$ (display) with KaTeX. Code blocks and
      anything else in ignoredTags are left untouched. */
   function typesetMath(root) {
@@ -315,8 +347,7 @@
     });
   }
 
-  function statusBarHtml(q) {
-    const current = Progress.get(q.id);
+  function statusBarHtml(q) {    const current = Progress.get(q.id);
     const buttons = STATUSES.map((s) => {
       const on = current === s.id;
       return `<button class="status-btn${on ? " is-on" : ""}" type="button"
@@ -353,11 +384,20 @@
         </div>`;
       el.reveal.disabled = true;
       el.reveal.textContent = "Reveal answer";
+      el.hint.disabled = true;
+      el.hint.textContent = "Hint";
       return;
     }
     el.reveal.disabled = false;
 
     const isRevealed = state.revealed.has(q.id);
+    const isHinted = state.hinted.has(q.id);
+    const hasHint = !!(q.hint && q.hint.text);
+
+    el.hint.disabled = !hasHint;
+    el.hint.textContent = isHinted ? "Hide hint" : "Hint";
+
+    const hintHtml = hasHint && isHinted ? hintPanelHtml(q) : "";
 
     const answerHtml = isRevealed
       ? `<section class="answer">
@@ -389,6 +429,7 @@
         ${partsHtml(q.parts, "parts")}
         ${q.note ? `<p class="q-topics">${q.note}</p>` : ""}
       </div>
+      ${hintHtml}
       ${answerHtml}`;
 
     el.reveal.textContent = isRevealed ? "Hide answer" : "Reveal answer";
@@ -437,6 +478,14 @@
     render();
   }
 
+  function toggleHint() {
+    const q = state.list[state.idx];
+    if (!q || !q.hint) return;
+    if (state.hinted.has(q.id)) state.hinted.delete(q.id);
+    else state.hinted.add(q.id);
+    render();
+  }
+
   function clearFilters() {
     state.topics.clear();
     state.diffs.clear();
@@ -460,6 +509,7 @@
   el.prev.addEventListener("click", () => go(-1));
   el.next.addEventListener("click", () => go(1));
   el.reveal.addEventListener("click", toggleReveal);
+  el.hint.addEventListener("click", toggleHint);
   el.clear.addEventListener("click", clearFilters);
   el.resetProgress.addEventListener("click", resetProgress);
 
@@ -487,6 +537,9 @@
     } else if (e.key === "r" || e.key === "R") {
       e.preventDefault();
       toggleReveal();
+    } else if (e.key === "h" || e.key === "H") {
+      e.preventDefault();
+      toggleHint();
     } else {
       const q = state.list[state.idx];
       if (!q) return;

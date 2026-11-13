@@ -7,6 +7,10 @@
     title: "Challenger O-rings: $T_{50}$, the delta method and changing units",
     difficulty: "Medium",
     topics: ["logistic", "mle", "info"],
+    hint: {
+      text: `$T_{50}$ is where the log-odds are zero, so $T_{50} = -\\beta_0/\\beta_1$; invariance gives the estimate. For the standard error use the delta method with $\\nabla g = (-1/\\beta_1,\\; \\beta_0/\\beta_1^{2})$.`,
+      refs: ["l11", "l06"]
+    },
     stem: `Before the launch of the space shuttle Challenger, information was available from 23 previous shuttle launches. For launch $i$ let $Y_i = 1$ if an incident of damage to the field-joint O-rings was observed and $Y_i = 0$ otherwise, and let $x_i$ denote the launch temperature in degrees Fahrenheit. Consider the logistic regression model
 <div class="display">$$Y_i \\sim \\mathrm{Bernoulli}(p_i), \\qquad \\log\\left(\\frac{p_i}{1-p_i}\\right) = \\beta_0 + \\beta_1 x_i.$$</div>
 The data and model are entered in R as follows, with relevant output shown.
@@ -82,6 +86,10 @@ The fitted probabilities do not change, because the re-expressed coefficients gi
     title: "Kyphosis: interpreting a logistic fit and checking it",
     difficulty: "Medium",
     topics: ["logistic", "diagnostics"],
+    hint: {
+      text: `Coefficients live on the log-odds scale: $\\exp(\\beta)$ is a multiplicative change in the odds. Watch the units — Age is in months, so a one-year change is $12$ units of Age.`,
+      refs: ["l11"]
+    },
     stem: `The <code>kyphosis</code> data frame contains information on 81 children who underwent corrective spinal surgery. The response records whether kyphosis was present or absent following surgery. The explanatory variables are the child's age in months (Age), the number of vertebrae involved in the operation (Number), and the number of the first (topmost) vertebra operated on (Start). Define a successful outcome to mean that kyphosis was absent following surgery. The following model was fitted in R.
 <pre><code>data(kyphosis, package = "rpart")
 kyphosis$success &lt;- as.integer(kyphosis$Kyphosis == "absent")
@@ -173,6 +181,10 @@ Consequently every fitted regression coefficient changes sign. The fitted probab
     title: "Wells data: interpreting odds and checking the mean structure",
     difficulty: "Easy",
     topics: ["logistic", "diagnostics"],
+    hint: {
+      text: `Same log-odds reading as the previous question. For the binned residual plots, a systematic pattern against a covariate is evidence that the <em>functional form</em> for that covariate is wrong, not that the model is useless.`,
+      refs: ["l11", "l12"]
+    },
     stem: `The Wells data contain information from 3020 households in Bangladesh whose wells had unsafe arsenic levels. The response <code>switch</code> records whether a household switched to another well. The explanatory variables are distance to the nearest known safe well, arsenic concentration in the household's original well, and years of education of the household head. Load and prepare the data as follows.
 <pre><code>data(Wells, package = "carData")
 Wells$switch01 &lt;- as.integer(Wells$switch == "yes")
@@ -203,7 +215,7 @@ There are $n = 3020$ households. Examine the fitted coefficients and state which
   <figcaption>Binned residual plot against the fitted linear predictor, 40 bins.</figcaption>
 </figure>
 
-The average residuals range from $-0.159$ to $0.107$, and only one of the $40$ bins has an average outside the $\pm 2$ standard-error band. Does this provide clear evidence of lack of fit? Explain.` },
+The average residuals range from $-0.159$ to $0.107$, and only one of the $40$ bins has an average outside the $\\pm 2$ standard-error band. Does this provide clear evidence of lack of fit? Explain.` },
       { l: "e", t: `The raw residuals were instead binned by **arsenic concentration**, again into $40$ bins:
 
 <figure>
@@ -211,7 +223,7 @@ The average residuals range from $-0.159$ to $0.107$, and only one of the $40$ b
   <figcaption>Binned residual plot against arsenic concentration, 40 bins.</figcaption>
 </figure>
 
-Three of the $40$ bins have averages outside the $\pm 2$ standard-error band, and the two lowest-arsenic bins are by far the most negative. Interpret the pattern.` },
+Three of the $40$ bins have averages outside the $\\pm 2$ standard-error band, and the two lowest-arsenic bins are by far the most negative. Interpret the pattern.` },
       { l: "f", t: `What aspect of the fitted model should be reconsidered in light of the plot in part (e)?` }
     ],
     answer: [

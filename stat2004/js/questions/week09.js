@@ -7,6 +7,10 @@
     title: "Robustness of t-methods to non-normal data",
     difficulty: "Easy",
     topics: ["simulation", "ci", "sampling"],
+    hint: {
+      text: `Compute $\\bar{x} \\pm t_{n-1,0.95}\\,s/\\sqrt{n}$. Then compare the coverage column with $0.90$: think about the skewness of the Poisson distribution when $\\mu$ is small, and about samples where every observation is zero.`,
+      refs: ["w7l12", "w9l3"]
+    },
     stem: `t-based methods are derived under the assumption of normal data. However, the main reason t-methods have proven so useful in almost all areas of applied science is that they are remarkably robust to departures from normality, even with moderate sample sizes. In this exercise we test the practical performance of the classical t-based confidence interval when applied to Poisson data, which are quite evidently not normal.`,
     parts: [
       { l: "a", t: `A sample of $n = 22$ Poisson observations with population mean $\\mu = 8.7654$ (unknown to the analyst) was generated with <code>rpois(22, 8.7654)</code>:
@@ -87,6 +91,10 @@ The general lesson: t-methods are robust to non-normality in the <em>shape</em> 
     title: "Significance level, power, type I and type II errors",
     difficulty: "Easy",
     topics: ["testing"],
+    hint: {
+      text: `Each sentence is about one of three things: the level (a probability under $H_0$), the power (a probability under $H_1$), or the $p$-value. Keep those three separate and the true/false answers follow.`,
+      refs: ["w8l3", "w9l3"]
+    },
     stem: `Are each of the following sentences true or false? If a sentence is false, modify it appropriately so that it becomes true.`,
     parts: [
       { l: "a", t: `The significance level of a test is equal to the probability that the null hypothesis is true.` },
@@ -141,6 +149,10 @@ The general lesson: t-methods are robust to non-normality in the <em>shape</em> 
     title: "Testing for a biased coin: level, power and the power curve",
     difficulty: "Easy",
     topics: ["testing", "distributions"],
+    hint: {
+      text: `$X \\sim \\mathrm{Bin}(10,p)$. The level is $P(\\text{reject} \\mid p = 0.5)$; the power at $p$ is the same sum of four binomial probabilities evaluated at $p$ instead of $0.5$.`,
+      refs: ["w8l3", "w9l3"]
+    },
     stem: `A coin is to be thrown independently $10$ times to test the hypothesis that the coin is fair versus the alternative that the coin is biased. A decision rule is proposed to reject the null hypothesis if either $0$ or $1$, or $9$ or $10$ heads are observed.`,
     parts: [
       { l: "a", t: `Identify the parameter of interest in this test and write down the null and alternative hypotheses in terms of this parameter.` },
@@ -190,6 +202,10 @@ The test is powerful only against <em>severely</em> biased coins: at $p = 0.1$ t
     title: "Testing for a loaded die",
     difficulty: "Easy",
     topics: ["testing", "distributions"],
+    hint: {
+      text: `$X \\sim \\mathrm{Bin}(100, 1/6)$ under $H_0$. Note what the result <em>doesn't</em> account for: the outcome tested was chosen after seeing which face looked most unusual.`,
+      refs: ["w8l3", "w10l3"]
+    },
     stem: `We suspect a certain die to be loaded. Rolling it $100$ times we observe $25$ sixes. Is there enough evidence to justify our suspicion?`,
     parts: [
       { l: "a", t: `Identify the parameter of interest here and write down the null and alternative hypotheses in terms of this parameter.` },

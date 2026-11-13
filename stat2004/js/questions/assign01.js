@@ -8,6 +8,10 @@
     title: "The Rayleigh distribution: MLE, bias, MSE and consistency",
     difficulty: "Medium",
     topics: ["mle", "estimation", "sampling"],
+    hint: {
+      text: `$\\ell'(\\theta) = -n/\\theta + S/(2\\theta^{2})$ where $S = \\sum x_i^{2}$; rewriting $U(\\theta) = (S-2n\\theta)/(2\\theta^{2})$ shows the sign change. Bias comes from $\\mathrm{E}(X^{2}) = 2\\theta$, and the MSE from $\\mathrm{Var}(X^{2}) = 8\\theta^{2}-(2\\theta)^{2}$.`,
+      refs: ["l03", "l02"]
+    },
     stem: `The Rayleigh distribution is often used to model non-negative magnitudes, such as wind speeds, wave heights or signal amplitudes. Its probability density function is
 <div class="display">$$f(x;\\theta) = \\frac{x}{\\theta}\\exp\\left(-\\frac{x^{2}}{2\\theta}\\right), \\qquad x > 0, \\;\\theta > 0.$$</div>
 Let $X_1,\\dots,X_n$ be a random sample from this distribution. It may help to know that
@@ -76,6 +80,10 @@ the mean squared error converges to zero, and an estimator whose MSE tends to ze
     title: "The zero-truncated Poisson: existence and uniqueness of the MLE",
     difficulty: "Hard",
     topics: ["mle", "estimation"],
+    hint: {
+      text: `The score can be written as $\\frac{n}{\\theta}[\\bar{X}-g(\\theta)]$. To show $g$ is increasing you need $e^{\\theta} > 1+\\theta$. The range of $g$ on $(0,\\infty)$ tells you exactly when the MLE exists.`,
+      refs: ["l03"]
+    },
     stem: `The zero-truncated Poisson distribution is used to model count data where only positive counts can be observed, or where zero counts are excluded from the sample. Its probability mass function is
 <div class="display">$$f(x;\\theta) = \\frac{\\theta^{x}}{x!\\,\\{e^{\\theta} - 1\\}}, \\qquad x \\in \\{1,2,\\dots\\}, \\;\\theta > 0.$$</div>
 Let $X_1,\\dots,X_n$ be a random sample from this distribution.`,
@@ -139,6 +147,10 @@ Since each observation is a positive integer, $\\bar{X} = 1$ occurs exactly when
     title: "The Lomax distribution: method of moments and numerical MLE",
     difficulty: "Hard",
     topics: ["moments", "mle", "estimation"],
+    hint: {
+      text: `For the method of moments, divide the variance equation by the mean equation. Note $m_2 - m_1^{2} = \\left(\\frac{n-1}{n}\\right)s^{2}$. For (d), read $\\alpha$ as the tail index: it decides which moments even exist.`,
+      refs: ["l01", "l02", "l03"]
+    },
     stem: `The Lomax distribution is a heavy-tailed distribution often used to model positive-valued data such as insurance losses, lifetimes or waiting times. Its density is
 <div class="display">$$f(x;\\boldsymbol{\\theta}) = \\frac{\\alpha}{\\lambda}\\left(1+\\frac{x}{\\lambda}\\right)^{-(\\alpha+1)}, \\qquad x > 0, \\;\\boldsymbol{\\theta} = (\\alpha,\\lambda) \\in (0,\\infty)^{2}.$$</div>
 The mean and variance are
@@ -213,6 +225,10 @@ which is close to the sample mean of $10.217$ — a useful check that the fit is
     title: "Estimating $p^{2}$ from a Binomial$(2,p)$ sample",
     difficulty: "Medium",
     topics: ["estimation", "mle"],
+    hint: {
+      text: `$Y_j$ is Bernoulli$(p^{2})$, so $\\mathrm{E}(Y_j) = p^{2}$. For the MLE use invariance, then $\\mathrm{E}(\\hat{p}^{2}) = \\mathrm{Var}(\\hat{p}) + \\{\\mathrm{E}(\\hat{p})\\}^{2}$ with $\\hat{p} = S/(2n)$.`,
+      refs: ["l02", "l03"]
+    },
     stem: `Let $X_1,\\dots,X_n$ be a random sample from a $\\mathrm{Binomial}(2,p)$ distribution, where $p \\in [0,1]$. We are interested in estimating $p^{2}$, the probability of two successes from two trials.`,
     parts: [
       {
@@ -279,6 +295,10 @@ For $0 < p < 1$ we have $2p < 1+p$, so $2p/(1+p) < 1$ and the MLE has the smalle
     title: "Maximum likelihood for an unknown support set",
     difficulty: "Hard",
     topics: ["mle", "distributions"],
+    hint: {
+      text: `The likelihood is $|A|^{-n}$ multiplied by an indicator that $B \\subseteq A$, where $B$ is the set of observed values. So maximise over sets containing $B$ — you want $|A|$ as small as possible.`,
+      refs: ["l03"]
+    },
     stem: `Let $m$ be known and suppose $A$ is an unknown non-empty subset of $\\{1,\\dots,m\\}$. Let $X_1,\\dots,X_n$ be independent random variables with
 <div class="display">$$P_A(X = x) = \\begin{cases}1/|A|, &amp; x \\in A, \\\\ 0, &amp; x \\notin A.\\end{cases}$$</div>`,
     parts: [

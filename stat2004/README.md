@@ -14,6 +14,8 @@ bank is loaded with plain `<script>` tags so `file://` works.
 - The filter groups combine with AND, e.g. *Hard* + *ANOVA* shows hard ANOVA questions.
 - **Clear all filters** resets to the full bank in tutorial order. It does *not* touch your
   progress marks.
+- **Hint** (or the <kbd>H</kbd> key) shows a nudge towards the method plus links to the
+  relevant lecture decks, without giving the answer away.
 - **Reveal answer** (or the <kbd>R</kbd> key) shows the worked solution; answers stay
   revealed when you navigate away and back.
 - <kbd>←</kbd> / <kbd>→</kbd> move between questions.
@@ -116,12 +118,39 @@ straddle $\lambda = 9.0$; Week 10 Exercise 6(c) omits the $n = 5$ column, which 
 index.html            page shell + script tags
 css/style.css         all styling (light & dark, responsive)
 js/theme.js           light/dark toggle, run early to avoid a flash
+js/lectures.js        catalogue of lecture decks, for hint links
 js/progress.js        flag / star / tick state, persisted in localStorage
 js/app.js             filtering, rendering, reveal logic, topic labels
 js/questions/weekNN.js  the question bank, one file per week
 vendor/katex/         KaTeX (JS, CSS, fonts) for LaTeX rendering
 img/                  diagnostic plots shown in the questions
 ```
+
+## Hints and lecture notes
+
+Every question has a **Hint** button. A hint has two parts:
+
+1. **A nudge** — one or two sentences pointing at the technique (the score function, the
+   quadratic inequality, which panel of a diagnostic plot to read), deliberately stopping
+   short of the answer.
+2. **Links to the lecture decks** — one or more PDFs from `lectures/`, opening in a new tab.
+
+The decks are catalogued in `js/lectures.js` under short ids (`l01`, `w7l12`, `w10l3`, …) so a
+question only needs `hint: { text: "...", refs: ["l03", "l02"] }`.
+
+### Why hints link to a whole deck, not a page
+
+The lecture PDFs are image-only — scanned handwritten notes with no text layer, so there is
+no way to search them or verify that a given page covers a given topic. Hints therefore point
+at the deck, identified from its title, date and content: *"Lecture 9 (Week 5) — Outliers,
+leverage and collinearity"*. Since no deck is longer than 12 pages, scrolling to the right
+place is quick, and this cannot go wrong the way a bad page anchor would.
+
+If you ever want page anchors, the reliable way in is to add a text layer or transcribe the
+decks — OCR of the handwriting was too unreliable to trust.
+
+Note that the applied classes and tutorials follow the *previous* week's lectures, so a Week 6
+question generally points at Week 5 lecture decks.
 
 ## Maths
 
@@ -181,6 +210,10 @@ Each `js/questions/weekNN.js` file pushes objects onto `window.QBANK`:
   title: "Maximum likelihood for the geometric distribution",
   difficulty: "Easy",     // "Easy" | "Medium" | "Hard"
   topics: ["mle"],        // ids from the TOPICS list in js/app.js
+  hint: {                 // optional: a nudge plus lecture deck ids
+    text: "Write the likelihood as $p^{n}(1-p)^{S-n}$ ...",
+    refs: ["l03", "l04"]
+  },
   stem: `Setup text, may contain HTML.`,
   parts:     [{ l: "a", t: `Question part.` }],
   answer:    [{ l: "a", t: `Solution for part a.` }]

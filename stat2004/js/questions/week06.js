@@ -7,6 +7,10 @@
     title: "Collinearity, $R^{2}$ and why correlated covariates can both matter",
     difficulty: "Hard",
     topics: ["regression", "diagnostics"],
+    hint: {
+      text: `Both $\\mathbf{x}_1^{\\top}\\mathbf{x}_2$ and $\\lVert\\mathbf{x}_1\\rVert^{2}$ reduce to multiples of $S = \\mathbf{z}^{\\top}\\mathbf{z}$. For (c), note $\\mathbf{x}_1-\\mathbf{x}_2 = 2\\delta\\mathbf{u}$, so $\\mathbf{y}$ is an exact linear combination of the two covariates.`,
+      refs: ["l09", "l07"]
+    },
     stem: `Suppose that $\\mathbf{z}$ and $\\mathbf{u}$ are nonzero vectors satisfying
 <div class="display">$$\\mathbf{u}^{\\top}\\mathbf{1} = \\mathbf{z}^{\\top}\\mathbf{1} = \\mathbf{z}^{\\top}\\mathbf{u} = 0 \\quad\\text{and}\\quad \\mathbf{z}^{\\top}\\mathbf{z} = \\mathbf{u}^{\\top}\\mathbf{u}.$$</div>
 For a small positive constant $\\delta$, define
@@ -66,6 +70,10 @@ So high correlation between two covariates is not, by itself, a reason to remove
     title: "Deleting an observation with a zero residual",
     difficulty: "Easy",
     topics: ["regression", "diagnostics"],
+    hint: {
+      text: `Write out the normal equations and notice that observation $i$ contributes $\\mathbf{x}_i e_i = \\mathbf{0}$. The residual sum of squares is unchanged — only the divisor in $\\hat{\\sigma}^2$ changes.`,
+      refs: ["l08", "l09"]
+    },
     stem: `Consider a linear regression model with design matrix $\\mathbf{X}$ of full column rank. Suppose that observation $i$ has residual $e_i = 0$.`,
     parts: [
       { l: "a", t: `Show that deleting observation $i$ does not change the least-squares coefficient estimates, provided that the design matrix for the remaining observations has full column rank.` },
@@ -96,6 +104,10 @@ It therefore increases (when $\\mathrm{RSS} > 0$), since the same residual sum o
     title: "Diagnostics, transformations and Box–Cox for the trees data",
     difficulty: "Medium",
     topics: ["regression", "diagnostics", "transform"],
+    hint: {
+      text: `Read the four panels in turn: curvature in residuals-versus-fitted means the mean structure is wrong, a fan shape in scale-location means non-constant variance, and the normal Q-Q plot is what speaks to normality.`,
+      refs: ["l08", "l09", "l10"]
+    },
     stem: `The <code>trees</code> dataset in R contains measurements from 31 felled black cherry trees:
 <ul>
 <li><strong>Girth</strong> — the diameter of the tree, in inches;</li>
@@ -134,7 +146,7 @@ The four standard diagnostic plots are
   <figcaption>Diagnostic plots for <code>lm(Volume ~ Girth + Height)</code>.</figcaption>
 </figure>
 
-The residual standard deviation is $\hat{\sigma} = 3.882$, and the correlation between $|e_i|$ and the fitted value is $0.28$.
+The residual standard deviation is $\\hat{\\sigma} = 3.882$, and the correlation between $|e_i|$ and the fitted value is $0.28$.
 
 Using the plots together with the numerical summaries, assess the assumptions of the linear regression model. Comment on any evidence of an inadequate mean structure, nonconstant error variance, or unusual observations.` },
       {
@@ -262,6 +274,10 @@ Since that interval comfortably contains $0$, the logarithmic transformation $\\
     title: "Outliers, collinearity and VIFs in the SAT regression",
     difficulty: "Medium",
     topics: ["regression", "diagnostics", "multiplicity"],
+    hint: {
+      text: `$\\mathrm{VIF}_j = 1/(1-R_j^{2})$ where $R_j^{2}$ comes from regressing covariate $j$ on the others. When screening many residuals, compare $|r_i|$ against the Bonferroni critical value $t_{1-\\alpha/(2n)}$.`,
+      refs: ["l09", "l10"]
+    },
     stem: `The <code>sat</code> data in the <code>faraway</code> package contain state-level educational expenditure and SAT results for the 50 US states in 1994–95. Fit the model
 <div class="display">$$\\texttt{total} = \\beta_0 + \\beta_1\\texttt{expend} + \\beta_2\\texttt{salary} + \\beta_3\\texttt{ratio} + \\beta_4\\texttt{takers} + \\varepsilon.$$</div>
 <pre><code>library(faraway)

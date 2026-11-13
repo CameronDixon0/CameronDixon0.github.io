@@ -7,6 +7,10 @@
     title: "Full column rank, invertibility and zero-variance estimates",
     difficulty: "Medium",
     topics: ["regression", "estimation"],
+    hint: {
+      text: `Prove both directions. If $\\mathbf{X}\\mathbf{c} = \\mathbf{0}$ then $\\mathbf{X}^{\\top}\\mathbf{X}\\mathbf{c} = \\mathbf{0}$. Conversely, pre-multiply by $\\mathbf{c}^{\\top}$ and use $\\mathbf{c}^{\\top}\\mathbf{X}^{\\top}\\mathbf{X}\\mathbf{c} = \\lVert\\mathbf{X}\\mathbf{c}\\rVert^{2}$.`,
+      refs: ["l07"]
+    },
     stem: `Suppose that $\\mathbf{Y} \\sim \\mathrm{N}(\\mathbf{X}\\boldsymbol{\\beta}, \\sigma^{2}\\mathbf{I}_n)$, where $\\mathbf{X}$ is an $n \\times p$ matrix, $n > p$ and $\\sigma^{2} > 0$. If $\\mathbf{X}$ has full column rank (that is, there is no $\\mathbf{c} \\in \\mathbb{R}^{p}\\setminus\\{\\mathbf{0}\\}$ such that $\\mathbf{X}\\mathbf{c} = \\mathbf{0}$) the MLE is unique and given by
 <div class="display">$$\\hat{\\boldsymbol{\\beta}} = (\\mathbf{X}^{\\top}\\mathbf{X})^{-1}\\mathbf{X}^{\\top}\\mathbf{Y}.$$</div>`,
     parts: [
@@ -44,6 +48,10 @@ So no such $\\mathbf{c}$ exists: every non-trivial linear combination of $\\hat{
     title: "Regression through the origin: consistency and MSE comparison",
     difficulty: "Hard",
     topics: ["regression", "estimation", "sampling"],
+    hint: {
+      text: `$\\hat{\\beta}_n$ is the least-squares solution with a single column. For consistency use MSE $\\to 0$ and the fact that partial sums of $x_j^2$ are non-decreasing. For (e) apply Cauchy–Schwarz to $a_j = x_j$ and $b_j = x_j^{-1}$.`,
+      refs: ["l07", "l02"]
+    },
     stem: `Consider the regression-through-the-origin model
 <div class="display">$$Y_i = \\beta x_i + \\varepsilon_i,$$</div>
 where the $\\varepsilon_i$ are IID $\\mathrm{N}(0,\\sigma^{2})$ and $x_1, x_2, \\dots$ is a fixed (non-random) sequence. Assume that $x_1 \\neq 0$.`,
@@ -111,6 +119,10 @@ Equality in Cauchy–Schwarz holds if and only if $(x_1,\\dots,x_n)$ and $(x_1^{
     title: "Omitting a variable that is orthogonal to the design",
     difficulty: "Medium",
     topics: ["regression", "estimation"],
+    hint: {
+      text: `Substitute the true model into $\\hat{\\boldsymbol{\\beta}}$ and take expectations to find the omission bias. For (d) use $\\mathbf{H}\\mathbf{X} = \\mathbf{X}$, $\\mathbf{H}\\mathbf{z} = \\mathbf{0}$, and that $\\mathbf{I}-\\mathbf{H}$ is symmetric and idempotent.`,
+      refs: ["l07", "l08"]
+    },
     stem: `Suppose that the true regression model is
 <div class="display">$$\\mathbf{Y} = \\mathbf{X}\\boldsymbol{\\beta} + \\gamma\\mathbf{z} + \\boldsymbol{\\varepsilon}, \\qquad \\boldsymbol{\\varepsilon} \\sim \\mathrm{N}_n(\\mathbf{0}, \\sigma^{2}\\mathbf{I}_n),$$</div>
 where $\\mathbf{X}$ is an $n \\times p$ matrix with full column rank and $\\mathbf{z} \\in \\mathbb{R}^{n}$ contains the observed values of an additional explanatory variable.
@@ -182,6 +194,10 @@ since $\\mathbf{H}$ is symmetric and idempotent, so that $\\mathbf{I}_n - \\math
     title: "Influence and leverage in the SAT regression",
     difficulty: "Medium",
     topics: ["regression", "diagnostics"],
+    hint: {
+      text: `Cook's distance combines a standardised residual with leverage. Compare each state's leverage with the average $p/n = 0.10$, and read the <code>dfbeta</code> rows to see what deletion actually does.`,
+      refs: ["l08", "l09"]
+    },
     stem: `The <code>sat</code> data in the <code>faraway</code> package contain state-level educational expenditure and SAT results for the 50 US states in 1994–95. Fit the model
 <div class="display">$$\\texttt{total} = \\beta_0 + \\beta_1\\texttt{expend} + \\beta_2\\texttt{salary} + \\beta_3\\texttt{ratio} + \\beta_4\\texttt{takers} + \\varepsilon.$$</div>
 Use appropriate diagnostic quantities and plots to answer the questions below. For every plot displayed, explain what feature is relevant and what conclusion you draw. Do not display a plot unless you have something substantive to say about it.

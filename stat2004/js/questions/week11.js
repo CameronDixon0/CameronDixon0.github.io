@@ -7,6 +7,10 @@
     title: "Basic properties of the multinomial distribution",
     difficulty: "Medium",
     topics: ["distributions", "tables"],
+    hint: {
+      text: `For the marginal, sum the joint pmf over the other counts and recognise the remaining sum as a multinomial probability that equals $1$. For the covariance, compute $\\mathrm{E}(X_1X_2) = n(n-1)p_1p_2$.`,
+      refs: ["w10l12"]
+    },
     stem: `Let $\\mathbf{X} = (X_1, X_2, \\dots, X_K)^{\\top}$ be a random sample of counts from a multinomial distribution with parameters $\\mathbf{p} = (p_1, \\dots, p_K)^{\\top}$, such that $1 = p_1 + \\cdots + p_K$ and $n = X_1 + \\cdots + X_K$ is the sample size. Recall that the joint pmf is
 <div class="display">$$P(X_1 = x_1, \\dots, X_K = x_K) = \\frac{n!}{x_1!\\,x_2!\\cdots x_K!}\\,p_1^{x_1}p_2^{x_2}\\cdots p_K^{x_K},$$</div>
 for vectors $\\mathbf{x} = (x_1,\\dots,x_K)^{\\top}$ that sum to $n$.`,
@@ -66,6 +70,10 @@ i.e. they are perfectly negatively correlated. We did not need any formula for t
     title: "Goodness-of-fit test for a die, and data snooping",
     difficulty: "Medium",
     topics: ["gof", "tables", "multiplicity"],
+    hint: {
+      text: `Pearson's statistic is $\\sum (O-E)^2/E$ with $E = 100/6$ and $5$ degrees of freedom. Compare $-2\\log\\Lambda$ with the same $\\chi^{2}_5$. For (g) the correction for having six faces to choose from is a Bonferroni multiplication.`,
+      refs: ["w10l12", "w10l3"]
+    },
     stem: `In an earlier tutorial a die was rolled $100$ times and the number of sixes was observed to be $25$. The full set of observed counts is
 <table>
 <tr><th>face</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
@@ -126,6 +134,10 @@ After adjusting for multiplicity there is again no evidence that the die is load
     title: "Are suicide rates constant throughout the year?",
     difficulty: "Easy",
     topics: ["gof"],
+    hint: {
+      text: `Expected counts are proportional to the number of days in each month. Degrees of freedom: twelve cells minus one constraint, so $11$.`,
+      refs: ["w10l12", "w10l3"]
+    },
     stem: `Are suicide rates constant throughout the year, or could they be affected by seasonal factors such as weather, holidays and financial cycles? The National Center for Health Statistics collected the following distribution of suicides in the United States by month in 1970.
 <table>
 <tr><th>Month</th><th>Suicides</th><th>Days</th></tr>
@@ -196,6 +208,10 @@ So the suicide rate appears lowest in the US winter months and highest during Ap
     title: "Assessing authorship via word usage",
     difficulty: "Medium",
     topics: ["tables"],
+    hint: {
+      text: `A test of homogeneity: $E_{ij} = (\\text{row}_i \\times \\text{col}_j)/N$ and $(r-1)(c-1)$ degrees of freedom. Pool Austen's three works first — that is what part (a) licenses you to do.`,
+      refs: ["w10l3"]
+    },
     stem: `Probabilistic models of word counts can be used to measure literary style, and such counts have settled controversies about disputed authorship. Morton (1978) counted the occurrences of six words in several works: chapters 1 and 3 of <em>Sense and Sensibility</em>, chapters 1, 2 and 3 of <em>Emma</em>, chapters 1 and 6 of <em>Sanditon</em> (by Austen), and chapters 12 and 24 of <em>Sanditon</em> (by an imitator).
 <table>
 <tr><th>Word</th><th>Sense &amp; Sensibility</th><th>Emma</th><th>Sanditon (Austen)</th><th>Sanditon (imitator)</th></tr>

@@ -8,6 +8,10 @@
     title: "Information, the Cramér–Rao bound and standard errors",
     difficulty: "Hard",
     topics: ["info", "mle", "estimation"],
+    hint: {
+      text: `Two routes to the same information: $I(\\theta) = -\\mathrm{E}(\\ell'')$ and $I(\\theta) = \\mathrm{Var}(U)$. Then compare $1/I(\\theta)$ with the variance you found in Assignment 1, and use the delta method for the reparametrised mean.`,
+      refs: ["l05", "l06"]
+    },
     stem: `This question builds on Assignment 1. In Question 1 of Assignment 1 we met the Rayleigh distribution, with density
 <div class="display">$$f(x;\\theta) = \\frac{x}{\\theta}\\exp\\left(-\\frac{x^{2}}{2\\theta}\\right), \\qquad x > 0, \\;\\theta > 0,$$</div>
 for which $\\mathrm{E}_\\theta(X^{2}) = 2\\theta$ and $\\mathrm{E}_\\theta(X^{4}) = 8\\theta^{2}$, and the MLE is $\\hat{\\theta} = \\frac{1}{2n}\\sum_{i=1}^{n}X_i^{2}$. Let $X_1,\\dots,X_n$ be a random sample from this distribution.
@@ -106,6 +110,10 @@ Reassuringly, this interval comfortably contains the sample mean $\\bar{x} = 10.
     title: "Estimating $\\sigma$ from residuals, reparametrisation and leverage",
     difficulty: "Hard",
     topics: ["regression", "estimation", "diagnostics"],
+    hint: {
+      text: `$e_i \\sim \\mathrm{N}(0,\\sigma^{2}(1-h_{ii}))$, so $\\mathrm{E}|e_i| = \\sigma\\sqrt{2/\\pi}\\sqrt{1-h_{ii}}$. Linearity of expectation needs no independence — that is the answer to (a)(ii). For (b) expand $(\\mathbf{X}\\mathbf{A})^{\\top}(\\mathbf{X}\\mathbf{A})$ and use $(\\mathbf{P}\\mathbf{Q})^{-1} = \\mathbf{Q}^{-1}\\mathbf{P}^{-1}$.`,
+      refs: ["l07", "l08"]
+    },
     stem: `Consider the standard linear regression model
 <div class="display">$$\\mathbf{Y} = \\mathbf{X}\\boldsymbol{\\beta} + \\boldsymbol{\\varepsilon}, \\qquad \\boldsymbol{\\varepsilon} \\sim \\mathrm{N}(\\mathbf{0}, \\sigma^{2}\\mathbf{I}),$$</div>
 where $\\mathbf{X}$ is an $n \\times p$ matrix with full column rank and $n > p$. Let $\\mathbf{H} = \\mathbf{X}(\\mathbf{X}^{\\top}\\mathbf{X})^{-1}\\mathbf{X}^{\\top}$ denote the influence matrix.`,
@@ -190,6 +198,10 @@ The $j$th component of $(\\mathbf{I}-\\mathbf{H})\\mathbf{u}_j$ is $1-h_{jj}$, w
     title: "Choosing design points to minimise variances",
     difficulty: "Hard",
     topics: ["regression", "estimation"],
+    hint: {
+      text: `$\\mathrm{Var}(\\hat{\\beta}_0) = \\sigma^{2}\\left(\\frac{1}{n} + \\frac{\\bar{z}^{2}}{S_{zz}}\\right)$, minimised when $\\bar{z} = 0$. The orthogonal design makes $\\mathbf{X}^{\\top}\\mathbf{X}$ diagonal, so the leverage is $1/n$ plus that observation's share of variation in whichever covariate is non-zero.`,
+      refs: ["l07", "l08", "l09"]
+    },
     stem: `A researcher wishes to investigate the effects of two quantitative covariates, $x_1$ and $x_2$, on a response $Y$. The researcher can choose the $n$ design points $(x_{1,1},x_{2,1}),\\dots,(x_{1,n},x_{2,n})$ at which the response is observed.`,
     parts: [
       {
@@ -264,6 +276,10 @@ In both cases the leverage is $1/n$ plus the observation's share of the variatio
     title: "Delivery times: regression, collinearity and influence",
     difficulty: "Medium",
     topics: ["regression", "diagnostics"],
+    hint: {
+      text: `$\\mathrm{VIF} = 1/(1-R^{2})$ from regressing each covariate on the others. For influence you need <em>both</em> a large residual and leverage — a high-leverage point that sits on the fitted surface has a small Cook's distance.`,
+      refs: ["l07", "l09", "l10"]
+    },
     stem: `A distributor of temperature-controlled medical supplies wants to predict the time required to complete each delivery route. For $60$ weekday routes the following were recorded:
 <ul>
 <li><code>distance</code>: total route distance in kilometres;</li>
@@ -387,6 +403,10 @@ Substantively, route 51 has an unusual combination of predictors (a mid-range di
     title: "Estimating the mean when variance equals mean",
     difficulty: "Hard",
     topics: ["estimation", "info", "mle"],
+    hint: {
+      text: `Write the score for $\\mathrm{N}(\\theta,\\theta)$ carefully — both the mean and the variance depend on $\\theta$. The key distinction is the class each theorem covers: Cramér–Rao covers all unbiased estimators, Gauss–Markov only linear ones.`,
+      refs: ["l05", "l06", "l07"]
+    },
     stem: `The total signal accumulated by a detector has both expected signal and signal variance proportional to the exposure time. In suitable units, an exposure time $\\theta > 0$ produces a measurement distributed as $\\mathrm{N}(\\theta,\\theta)$. Suppose $X_1,\\dots,X_n$ is a random sample from this distribution.`,
     parts: [
       { l: "a", t: `Show that $\\bar{X}$ is an unbiased estimator of $\\theta$, and determine its variance.` },

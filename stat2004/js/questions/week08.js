@@ -7,6 +7,10 @@
     title: "Pivot transformation for exponential data",
     difficulty: "Easy",
     topics: ["sampling", "ci", "distributions"],
+    hint: {
+      text: `Get the cdf of $Y = \\lambda X$ directly from the cdf of $X$ — that is easier than transforming the density. A pivot is a function of the data and the parameter whose distribution does not involve the parameter; once you have one, invert the probability statement.`,
+      refs: ["w7l12", "w7l3"]
+    },
     stem: `Let $X \\sim \\mathrm{Exp}(\\lambda)$, with pdf and cdf given respectively by
 <div class="display">$$f_\\lambda(x) = \\lambda e^{-\\lambda x} \\quad\\text{and}\\quad F_\\lambda(x) = 1 - e^{-\\lambda x}, \\qquad x \\ge 0,$$</div>
 where $\\lambda > 0$ is an unknown parameter.`,
@@ -61,6 +65,10 @@ We can be $99\\%$ confident that the true population $\\lambda$ lies between $0.
     title: "Prior and posterior beliefs for a Beta–binomial model",
     difficulty: "Easy",
     topics: ["bayes", "distributions"],
+    hint: {
+      text: `Conjugate update: a Beta prior with a binomial likelihood gives a Beta posterior — add the successes to $\\alpha$ and the failures to $\\beta$. No integration required.`,
+      refs: ["w8l12"]
+    },
     stem: `In a lecture, Max stated that his prior belief about the true proportion $p$ of Skittles before an in-class experiment was "around $50\\%$". What if our prior belief was the opposite of Max's?`,
     parts: [
       { l: "a", t: `Consider a prior belief about $p$ characterised by

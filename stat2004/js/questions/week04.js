@@ -7,6 +7,10 @@
     title: "Information and asymptotics for the geometric MLE",
     difficulty: "Medium",
     topics: ["info", "mle", "estimation"],
+    hint: {
+      text: `Differentiate $\\ell$ twice for the observed information, then take expectations using $\\mathrm{E}(\\sum X_i) = n/p$. For (c) ask what $\\hat{p}$ equals with probability one when $p_0 = 1$.`,
+      refs: ["l05", "l06"]
+    },
     stem: `The number of trials required to obtain the first success is modelled by the geometric distribution, with pmf
 <div class="display">$$f(x;p) = p(1-p)^{x-1}, \\quad x = 1,2,3,\\dots, \\quad p \\in (0,1].$$</div>
 It can be shown that if $X \\sim \\mathrm{Geometric}(p)$ then $\\mathrm{E}_p(X) = p^{-1}$ and $\\mathrm{Var}_p(X) = p^{-2}(1-p)$. Suppose $X_1,\\dots,X_n$ is a random sample from this distribution, and let $p_0$ denote the true value of the parameter.`,
@@ -62,6 +66,10 @@ which equals $\\mathrm{Var}_p(\\bar{X})$ exactly. So yes — the MLE of $p^{-1}$
     title: "Observed information and boundary asymptotics",
     difficulty: "Medium",
     topics: ["info", "mle"],
+    hint: {
+      text: `Again $J(\\theta) = -\\ell''(\\theta)$. When $\\theta_0 = 0$ the density is $\\frac{1}{2}$, so the integral for the expected information is elementary. For (c) argue from the sign of $\\hat{\\theta}+1$.`,
+      refs: ["l05", "l06"]
+    },
     stem: `Suppose $X_1,\\dots,X_n$ is a random sample from a distribution with probability density function
 <div class="display">$$f(x;\\theta) = \\tfrac{1}{2}(1+\\theta x), \\quad x \\in (-1,1), \\quad \\theta \\in [-1,1].$$</div>
 Let $\\theta_0$ denote the true value of the parameter.`,
@@ -103,6 +111,10 @@ with probability one. A non-degenerate normal random variable cannot be non-nega
     title: "A constrained multinomial model for plant cells",
     difficulty: "Hard",
     topics: ["mle", "tables", "info"],
+    hint: {
+      text: `Only $m = n_1+n_2$ enters the likelihood. For existence you need $\\ell'$ to change sign on $(0,1)$ — evaluate $\\ell'(0^{+})$ and $\\ell'(1^{-})$ and consider the cases $n_3 > 0$ and $n_3 = 0$.`,
+      refs: ["l03", "l05"]
+    },
     stem: `Recall that if $(N_0, N_1, \\dots, N_k)$ has a multinomial distribution with cell probabilities $(\\pi_0, \\dots, \\pi_k)$ and total count $n$, then
 <div class="display">$$P(N_0 = n_0, \\dots, N_k = n_k) = \\frac{n!}{n_0!\\cdots n_k!}\\,\\pi_0^{n_0}\\cdots\\pi_k^{n_k},$$</div>
 where $\\sum_i n_i = n$ and $\\sum_i \\pi_i = 1$.
@@ -171,6 +183,10 @@ so the asymptotic variance of $\\hat{\\theta}$ is $\\dfrac{2\\theta(1-\\theta)(2
     title: "Standard errors for the zero-inflated Poisson MLE",
     difficulty: "Easy",
     topics: ["info", "mle", "simulation"],
+    hint: {
+      text: `The Hessian returned by <code>optim</code> is the negative Hessian of the log-likelihood, i.e. the observed information. Invert it, take square roots of the diagonal for standard errors, and use the delta method for the mean.`,
+      refs: ["l05", "l06"]
+    },
     stem: `In the Week 3 applied class we used R to find the maximum likelihood estimator of the zero-inflated Poisson distribution, with probability mass function
 <div class="display">$$f(x;\\pi,\\lambda) = \\begin{cases} \\pi + (1-\\pi)e^{-\\lambda}, &amp; x = 0, \\\\[4pt] (1-\\pi)e^{-\\lambda}\\dfrac{\\lambda^{x}}{x!}, &amp; x = 1,2,\\dots, \\end{cases}$$</div>
 where $0 \\le \\pi \\le 1$ and $\\lambda > 0$.`,
@@ -234,6 +250,10 @@ so the two estimates are essentially uncorrelated in this sample. Both estimates
     title: "The inverse Gaussian: score, MLE and information",
     difficulty: "Hard",
     topics: ["mle", "info"],
+    hint: {
+      text: `Differentiate $\\ell$ with respect to $\\mu$ and to $\\lambda$ separately. For the information matrix, note that the cross term involves $\\sum(x_i-\\mu)$, whose expectation is zero — that is why the matrix comes out diagonal.`,
+      refs: ["l05", "l06"]
+    },
     stem: `The inverse Gaussian distribution is often used to model positive, right-skewed waiting times. Let $X_1,\\dots,X_n$ be a random sample from an inverse Gaussian distribution with density
 <div class="display">$$f(x;\\mu,\\lambda) = \\left(\\frac{\\lambda}{2\\pi x^{3}}\\right)^{1/2}\\exp\\left\\{-\\frac{\\lambda(x-\\mu)^{2}}{2\\mu^{2}x}\\right\\}, \\quad x > 0,$$</div>
 where $\\mu > 0$ and $\\lambda > 0$. For this parametrisation, $\\mathrm{E}(X) = \\mu$ and $\\mathrm{Var}(X) = \\dfrac{\\mu^{3}}{\\lambda}$.`,

@@ -562,17 +562,82 @@ th, td {
 
 th { font-weight: 600; color: var(--ink-soft); }
 
+/* ---------- hint panel ---------- */
+
+.hint-panel {
+  margin-top: 24px;
+  padding: 16px 18px 18px;
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--medium);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--medium) 5%, transparent);
+  animation: fade 160ms ease-out;
+}
+
+.hint-panel h3 {
+  margin: 0 0 10px;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--medium);
+}
+
+.hint-text {
+  font-size: 0.93rem;
+  color: var(--ink);
+}
+
+.hint-text p { margin: 0 0 10px; }
+.hint-text p:last-child { margin-bottom: 0; }
+
+.hint-refs {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line-strong);
+}
+
+.hint-refs h4 {
+  margin: 0 0 6px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hint-refs ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.85rem;
+}
+
+.hint-refs li { margin-bottom: 4px; }
+
+.hint-refs a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--medium) 55%, transparent);
+  text-underline-offset: 3px;
+}
+
+.hint-refs a:hover {
+  text-decoration-color: var(--medium);
+}
+
 /* ---------- controls ---------- */
 
 .controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   margin-top: 20px;
 }
 
 .controls .primary { flex: 1 1 auto; text-align: center; }
+
+.controls .ghost { flex: 0 0 auto; }
 
 .hint {
   margin: 18px 0 0;
@@ -613,4 +678,7 @@ kbd {
   .controls { flex-wrap: wrap; }
   .controls .primary { order: -1; flex: 1 0 100%; }
   .controls .ghost { flex: 1 1 0; }
+  .controls #prev { order: 1; }
+  .controls #hint { order: 2; }
+  .controls #next { order: 3; }
 }
