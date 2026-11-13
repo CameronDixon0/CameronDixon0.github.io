@@ -127,19 +127,16 @@ Output:
 &gt; largest Cook's distances
    31    18     3
 0.605 0.178 0.167</code></pre>
-To stand in for the residual-versus-fitted plot, the observations were sorted by fitted value and grouped into six bins:
-<table>
-<tr><th>bin</th><th>mean fitted value</th><th>mean residual</th><th>residual SD</th></tr>
-<tr><td>1</td><td>10.9</td><td>$+2.58$</td><td>3.27</td></tr>
-<tr><td>2</td><td>20.6</td><td>$-0.14$</td><td>1.11</td></tr>
-<tr><td>3</td><td>23.4</td><td>$-1.77$</td><td>3.35</td></tr>
-<tr><td>4</td><td>31.8</td><td>$-2.56$</td><td>3.60</td></tr>
-<tr><td>5</td><td>41.8</td><td>$-0.94$</td><td>3.61</td></tr>
-<tr><td>6</td><td>56.4</td><td>$+2.31$</td><td>4.88</td></tr>
-</table>
-The correlation between $|e_i|$ and the fitted value is $0.28$, and the residual standard deviation rises from $1.11$ in bin 2 to $4.88$ in bin 6.
+The four standard diagnostic plots are
 
-Using these summaries, assess the assumptions of the linear regression model. Comment on any evidence of an inadequate mean structure, nonconstant error variance, or unusual observations.` },
+<figure>
+  <img src="img/trees-diag-raw.png" alt="Residuals versus fitted values, normal quantile plot, scale-location plot and Cook's distance plot for the simple linear regression of Volume on Girth and Height.">
+  <figcaption>Diagnostic plots for <code>lm(Volume ~ Girth + Height)</code>.</figcaption>
+</figure>
+
+The residual standard deviation is $\hat{\sigma} = 3.882$, and the correlation between $|e_i|$ and the fitted value is $0.28$.
+
+Using the plots together with the numerical summaries, assess the assumptions of the linear regression model. Comment on any evidence of an inadequate mean structure, nonconstant error variance, or unusual observations.` },
       {
         l: "b",
         t: `One way of allowing for curvature is to add quadratic terms:
@@ -158,16 +155,14 @@ Fitting this model gives
 
 &gt; largest Cook's distances
    18    17    30
-0.491 0.242 0.088
+0.491 0.242 0.088</code></pre>
+The four diagnostic plots for this model are
 
-&gt; binned residuals (6 bins, sorted by fitted value)
- bin fitted meanres sdres
-   1   13.5   -0.01  0.67
-   2   20.1    0.39  1.38
-   3   22.4   -0.83  2.72
-   4   29.3   -0.04  3.48
-   5   40.0    0.84  2.96
-   6   59.1   -0.35  3.69</code></pre>
+<figure>
+  <img src="img/trees-diag-quad.png" alt="Diagnostic plots for the additive quadratic model for Volume.">
+  <figcaption>Diagnostic plots for the quadratic model.</figcaption>
+</figure>
+
 Compare these diagnostics with those from part (a). Does the addition of quadratic terms adequately address the problems identified in part (a)? Comment briefly on whether there is a scientific reason to expect timber volume to be an additive quadratic function of diameter and height.`
       },
       {
@@ -192,7 +187,14 @@ log(Height)   1.117124   0.204438  5.4644 7.011e-06
 
 &gt; largest Cook's distances
    18    17    11
-0.224 0.106 0.070</code></pre>`
+0.224 0.106 0.070</code></pre>
+
+The four diagnostic plots for this model are
+
+<figure>
+  <img src="img/trees-diag-log.png" alt="Diagnostic plots for the log-log model for Volume.">
+  <figcaption>Diagnostic plots for <code>lm(log(Volume) ~ log(Girth) + log(Height))</code>.</figcaption>
+</figure>`
       },
       {
         l: "d",
@@ -210,24 +212,23 @@ Is $\\lambda = 1$ plausible? Is $\\lambda = 0$ plausible? Taking account of both
     answer: [
       {
         l: "a",
-        t: `<pre><code>trees_lm &lt;- lm(Volume ~ Girth + Height, data = trees)
-coef(trees_lm)
-summary(trees_lm)$sigma
-par(mfrow = c(2, 2)); plot(trees_lm)
-rstudent(trees_lm); hatvalues(trees_lm); cooks.distance(trees_lm)</code></pre>
-The fitted model is
+        t: `The fitted model is
 <div class="display">$$\\widehat{\\texttt{Volume}} = -57.99 + 4.708\\,\\texttt{Girth} + 0.339\\,\\texttt{Height},$$</div>
 with estimated error standard deviation $3.882$.
 
-The binned residuals show the two problems clearly. The mean residual traces a systematic curve: it is positive in the lowest bin ($+2.58$), becomes negative through the middle bins ($-0.14$, $-1.77$, $-2.56$) and turns positive again in the highest bin ($+2.31$). A well-specified linear model would have mean residual close to zero in every bin, so this pattern is direct evidence of an inadequate mean structure.
+The <em>residuals-versus-fitted</em> plot shows a clear systematic curve: the residuals are positive for small fitted values, dip negative through the middle of the range, and turn positive again at the largest fitted values. Binning the residuals by fitted value makes this explicit — the bin means run $+2.58$, $-0.14$, $-1.77$, $-2.56$, $-0.94$, $+2.31$ — whereas a well-specified linear model would have mean residual near zero everywhere. This is direct evidence of an <strong>inadequate mean structure</strong>: the true relationship is curved, so a purely linear fit in Girth and Height is wrong.
 
-The residual spread also grows with the fitted value: the residual standard deviation is $1.11$ in bin 2 and $4.88$ in bin 6, and the correlation between $|e_i|$ and the fitted value is $0.28$. This is evidence of nonconstant (increasing) error variance, which invalidates the standard errors and the $t$ and $F$ tests.
+The <em>scale-location</em> plot makes the second problem visible: the spread of the standardised residuals increases steadily with the fitted value. The binned residual standard deviations rise from $1.11$ to $4.88$, and the correlation between $|e_i|$ and the fitted value is $0.28$. This is evidence of <strong>nonconstant (increasing) error variance</strong>, which invalidates the usual standard errors and hence the $t$ and $F$ tests.
+
+For <strong>normality</strong>, the <em>normal Q-Q plot</em> is close to a straight line over most of its range, with mild departures in the tails (observations 18 and 31). Taking the numerical summary and the plot together, the residuals do not show any serious departure from normality — the mean structure and variance are the problems, not the distributional shape.
+
+Finally, the <em>Cook's distance</em> plot isolates a single dominant point, tree 31, while the numbers show tree 31 also has the largest absolute studentised residual ($2.77$) and a high leverage ($0.227$).
 
 Tree 31 has the largest externally studentised residual (about $2.77$), high leverage ($0.227$) and Cook's distance about $0.61$, so it is unusual and influential, although not an overwhelming outlier.`
       },
       {
         l: "b",
-        t: `Comparing the binned residuals in the output with those of part (a), the systematic curve in the mean residual has largely gone: the means now alternate around zero without a clear trend, so the curvature has been addressed. The residual standard deviation still rises with the fitted value (from $0.67$ to $3.69$), so unequal spread remains.
+        t: `Comparing the plots with those of part (a), the systematic curve in the residuals-versus-fitted plot has largely gone — the lowess line now runs close to zero across the fitted range instead of tracing a U — so the curvature has been addressed. The <em>scale-location</em> plot, however, still fans out with the fitted value, so unequal spread remains. The normal Q-Q plot is acceptable apart from mild tail departures.
 
 The squared height term contributes little (its $p$-value is $0.887$, and the $p$-value for Girth is $0.068$ while that for Girth$^{2}$ is below $0.001$), and the raw powers produce strong numerical collinearity. The reduction in the residual standard deviation from $3.882$ to $2.674$ shows the fit is much better than in part (a).
 
@@ -241,7 +242,7 @@ which motivates the log-linear regression. The fitted model is
 <div class="display">$$\\widehat{\\log(\\texttt{Volume})} = -6.632 + 1.983\\log(\\texttt{Girth}) + 1.117\\log(\\texttt{Height}),$$</div>
 with estimated error standard deviation $0.0814$ on the log scale. The residual standard deviation has fallen from $3.882$ in part (a) and $2.674$ in part (b), on a scale where the fitted values now run from about $2.6$ to $4.1$, so this is a far better fit.
 
-Tree 18 has the largest studentised residual ($2.326$ in absolute value) and the largest Cook's distance ($0.224$), but neither is large enough to be a compelling outlier, and the other residuals are unremarkable. There is no sign here of the systematic curvature that affected part (a).
+The residuals-versus-fitted plot now shows no important curvature and no funnel shape, so both problems identified in part (a) have been addressed. The normal Q-Q plot is close to a straight line, so normality is supported. Tree 18 has the largest studentised residual ($2.326$ in absolute value) and the largest Cook's distance ($0.224$), but neither is large enough to be a compelling outlier, and the other residuals are unremarkable.
 
 The estimated exponents $1.98$ and $1.12$ are close to the geometrically suggested values $2$ and $1$, which is strong support for the cylindrical model. Both coefficients are many standard errors from zero ($t = 26.4$ and $t = 5.46$), so both are needed.`
       },

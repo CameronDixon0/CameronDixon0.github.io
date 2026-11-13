@@ -235,7 +235,8 @@
    * nesting a <div> inside a <p>.
    */
   const BLOCK_TAGS = new Set([
-    "div", "ul", "ol", "table", "pre", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6"
+    "div", "figure", "ul", "ol", "table", "pre", "blockquote",
+    "h1", "h2", "h3", "h4", "h5", "h6"
   ]);
 
   function segments(text) {

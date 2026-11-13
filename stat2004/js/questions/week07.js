@@ -105,27 +105,20 @@ summary(fit)
       { l: "d", t: `Explain why a plot of the individual raw residuals $y_i - \\hat{p}_i$ against the fitted linear predictors is difficult to interpret for this model. How does binning the residuals make the plot more informative?` },
       {
         l: "e",
-        t: `The raw residuals were binned by fitted linear predictor into $9$ bins, and in each bin the average raw residual was computed together with a reference band of about two standard errors.
+        t: `The raw residuals were binned by fitted linear predictor into $9$ bins, and in each bin the average raw residual was computed along with a reference band of about two standard errors.
 <pre><code>library(arm)
 binnedplot(x = predict(fit, type = "link"),
            y = residuals(fit, type = "response"),
            nclass = 9,
            xlab = "Fitted linear predictor",
            ylab = "Average raw residual")</code></pre>
-The binned summaries were
-<table>
-<tr><th>bin</th><th>mean fitted $\\hat{\\eta}$</th><th>avg raw residual</th><th>reference band</th><th>obs. success rate</th></tr>
-<tr><td>1</td><td>$-0.92$</td><td>$0.017$</td><td>$-0.324$ to $0.359$</td><td>$0.889$</td></tr>
-<tr><td>2</td><td>$0.20$</td><td>$0.005$</td><td>$-0.331$ to $0.341$</td><td>$0.778$</td></tr>
-<tr><td>3</td><td>$1.04$</td><td>$0.153$</td><td>$-0.052$ to $0.358$</td><td>$0.667$</td></tr>
-<tr><td>4</td><td>$1.53$</td><td>$-0.265$</td><td>$-0.614$ to $0.084$</td><td>$1.000$</td></tr>
-<tr><td>5</td><td>$2.04$</td><td>$-0.107$</td><td>$-0.403$ to $0.190$</td><td>$0.667$</td></tr>
-<tr><td>6</td><td>$2.43$</td><td>$0.081$</td><td>$0.076$ to $0.087$</td><td>$0.667$</td></tr>
-<tr><td>7</td><td>$2.72$</td><td>$0.062$</td><td>$0.058$ to $0.066$</td><td>$0.667$</td></tr>
-<tr><td>8</td><td>$3.24$</td><td>$0.039$</td><td>$0.032$ to $0.045$</td><td>$1.000$</td></tr>
-<tr><td>9</td><td>$4.21$</td><td>$0.015$</td><td>$0.012$ to $0.019$</td><td>$0.778$</td></tr>
-</table>
-Notice that in bins 6–9 the observed responses are nearly all the same, so the raw residuals have very little empirical variation and the reference bands collapse towards zero. Points outside these very narrow bands should therefore not automatically be interpreted as evidence of lack of fit. What do the binned residuals suggest about the adequacy of the fitted model? Justify your conclusion by considering the overall pattern as well as the behaviour of the reference bands.`
+
+<figure>
+  <img src="img/kyphosis-binned.png" alt="Binned residual plot for the kyphosis logistic regression: average raw residual against fitted linear predictor, with grey reference bands.">
+  <figcaption>Binned residual plot for the fitted kyphosis model.</figcaption>
+</figure>
+
+The grey lines are approximately two standard errors above and below zero, where the standard error in each bin is estimated from the sample standard deviation of the raw residuals in that bin. For some bins at the right of the plot the observed responses are nearly all the same, so the raw residuals have very little empirical variation and the grey reference limits collapse towards zero; points outside those very narrow limits should therefore not automatically be interpreted as evidence of lack of fit. What does the plot suggest about the adequacy of the fitted model? Justify your conclusion by considering the overall pattern of the binned residuals as well as the behaviour of the grey reference limits.`
       },
       { l: "f", t: `Estimate the probability of a successful outcome for a child aged $96$ months when six vertebrae are involved in the operation and the first vertebra operated on is vertebra $8$.` },
       { l: "g", t: `Suppose the response were instead coded as $1$ when postoperative kyphosis is present. Explain how the fitted regression coefficients and fitted probabilities would change.` }
@@ -203,19 +196,22 @@ educ4         0.171335   0.038314  4.4719 7.759e-06
 There are $n = 3020$ households. Examine the fitted coefficients and state which effects are clearly needed.` },
       { l: "b", t: `Interpret the estimated coefficient of dist100 in terms of the odds of switching wells.` },
       { l: "c", t: `Interpret the estimated coefficient of arsenic in terms of the odds of switching wells.` },
-      { l: "d", t: `Binning the raw residuals by fitted linear predictor into $40$ bins gave average residuals ranging from $-0.159$ to $0.107$. Only one of the $40$ bins had an average residual outside the $\\pm 2$ standard-error band, and that band was computed from the empirical spread of the residuals within the bin.
+      { l: "d", t: `The raw residuals were binned by fitted linear predictor into $40$ bins:
 
-Does this provide clear evidence of lack of fit? Explain.` },
-      { l: "e", t: `Binning the raw residuals by **arsenic concentration** into $40$ bins gave
-<table>
-<tr><th>bin</th><th>mean arsenic</th><th>avg raw residual</th><th>bin</th><th>mean arsenic</th><th>avg raw residual</th></tr>
-<tr><td>1</td><td>0.52</td><td>$-0.274$</td><td>21</td><td>1.33</td><td>$-0.030$</td></tr>
-<tr><td>2</td><td>0.55</td><td>$-0.196$</td><td>25</td><td>1.62</td><td>$0.154$</td></tr>
-<tr><td>3</td><td>0.57</td><td>$-0.073$</td><td>30</td><td>2.13</td><td>$0.090$</td></tr>
-<tr><td>8</td><td>0.73</td><td>$-0.075$</td><td>35</td><td>2.90</td><td>$-0.067$</td></tr>
-<tr><td>17</td><td>1.13</td><td>$0.077$</td><td>40</td><td>5.46</td><td>$-0.062$</td></tr>
-</table>
-Three of the $40$ bins have averages outside the $\\pm2$ standard-error band, and the two lowest-arsenic bins are by far the most negative. Interpret the pattern.` },
+<figure>
+  <img src="img/wells-binned-fitted.png" alt="Binned residual plot for the Wells logistic regression: average raw residual against fitted linear predictor, 40 bins, with grey reference bands.">
+  <figcaption>Binned residual plot against the fitted linear predictor, 40 bins.</figcaption>
+</figure>
+
+The average residuals range from $-0.159$ to $0.107$, and only one of the $40$ bins has an average outside the $\pm 2$ standard-error band. Does this provide clear evidence of lack of fit? Explain.` },
+      { l: "e", t: `The raw residuals were instead binned by **arsenic concentration**, again into $40$ bins:
+
+<figure>
+  <img src="img/wells-binned-arsenic.png" alt="Binned residual plot for the Wells logistic regression: average raw residual against arsenic concentration, 40 bins.">
+  <figcaption>Binned residual plot against arsenic concentration, 40 bins.</figcaption>
+</figure>
+
+Three of the $40$ bins have averages outside the $\pm 2$ standard-error band, and the two lowest-arsenic bins are by far the most negative. Interpret the pattern.` },
       { l: "f", t: `What aspect of the fitted model should be reconsidered in light of the plot in part (e)?` }
     ],
     answer: [

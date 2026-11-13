@@ -120,6 +120,7 @@ js/progress.js        flag / star / tick state, persisted in localStorage
 js/app.js             filtering, rendering, reveal logic, topic labels
 js/questions/weekNN.js  the question bank, one file per week
 vendor/katex/         KaTeX (JS, CSS, fonts) for LaTeX rendering
+img/                  diagnostic plots shown in the questions
 ```
 
 ## Maths
@@ -134,6 +135,32 @@ Maths is written as LaTeX in the data files and rendered by KaTeX:
 `<code>` so that R code such as `fish$count` is never mistaken for maths. Inside HTML
 attributes and text, write `&amp;` for a LaTeX alignment ampersand, and make sure a literal
 `<` is followed by a space (as in `$x < 0$`) so the browser does not treat it as a tag.
+
+## Figures
+
+Four questions show actual plots, because "assess the assumptions from these diagnostics" is
+a plot-reading question, not a numerical one. They live in `img/`:
+
+```html
+<figure>
+  <img src="img/trees-diag-raw.png" alt="...">
+  <figcaption>Diagnostic plots for <code>lm(Volume ~ Girth + Height)</code>.</figcaption>
+</figure>
+```
+
+`figure` is in the block-tag list in `js/app.js`, so it is emitted as a sibling of the
+paragraphs rather than being wrapped in a `<p>`; never open an inline tag such as `<strong>`
+before a figure and close it afterwards.
+
+Where the plots came from:
+
+- **`kyphosis-binned.png`, `wells-binned-*.png`, `sat-cooks.png`, `sat-expend-ratio.png`** —
+  extracted from the original PDFs with `pdfimages`, so they are exactly the plots the
+  questions refer to.
+- **`trees-diag-*.png`** — regenerated with R (`plot(model, which = 1:4)`), because the
+  original sheets showed only the code that produces them. Each is the standard four-panel
+  display: residuals vs fitted, normal Q-Q, scale-location and Cook's distance. All have a
+  white background so they read correctly in dark mode.
 
 ## Theming
 

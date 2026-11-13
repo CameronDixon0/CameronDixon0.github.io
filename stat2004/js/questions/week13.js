@@ -26,7 +26,7 @@ library(lattice)
 dotplot(worms ~ group, xlab = "Group", ylab = "No. of worms",
         main = "Number of worms in rats in each of four control groups")</code></pre>`,
     parts: [
-      { l: "a", t: `Argue why the side-by-side dotplot generated above is more appropriate for these data than a side-by-side boxplot.` },
+      { l: "a", t: `The five observations per group can be displayed either as a side-by-side dotplot or as a side-by-side boxplot. Argue why the dotplot is the more appropriate choice for these data.` },
       { l: "b", t: `Visually assess the validity of the "common variance" assumption that underpins ANOVA.` },
       { l: "c", t: `Test whether there are any mean differences between the four control groups. Write down an underlying model for the data and clearly state the null and alternative hypotheses in terms of the model parameters. The ANOVA gave
 <pre><code>&gt; anova(lm(worms ~ group))
@@ -189,7 +189,7 @@ library(lattice)
 dotplot(survivaltime ~ Treatment | Poison, layout = c(3,1),
         ylab = "Survival time (hours)", xlab = "Treatment")</code></pre>`,
     parts: [
-      { l: "a", t: `Argue why the side-by-side-by-side dotplot generated above is more appropriate for these data than a side-by-side-by-side boxplot.` },
+      { l: "a", t: `The four replications per setting can be displayed either as side-by-side-by-side dotplots (one panel per poison) or as boxplots. Argue why the dotplot is the more appropriate choice for these data.` },
       { l: "b", t: `A two-way ANOVA with interaction gave
 <pre><code>&gt; anova(lm(survivaltime ~ Poison * Treatment))
 

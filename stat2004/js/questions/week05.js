@@ -212,7 +212,19 @@ Connecticut           0.979    0.225          0.056
 
 &gt; dfbeta(sat_lm)["California", ]
 (Intercept)      expend      salary       ratio      takers
-      9.320       1.262      -0.307      -0.368      -0.009</code></pre>`,
+      9.320       1.262      -0.307      -0.368      -0.009</code></pre>
+
+Two plots were also produced: Cook's distance against the observation index, with a screening line at $4/n = 0.08$; and pupil-to-teacher ratio against each of expenditure per pupil and percentage of SAT takers, with Utah and California labelled.
+
+<figure>
+  <img src="img/sat-cooks.png" alt="Cook's distance for each of the 50 states in the SAT regression, with a dashed screening line at 4/n = 0.08.">
+  <figcaption>Cook's distance by state, with the screening line at $4/n = 0.08$.</figcaption>
+</figure>
+
+<figure>
+  <img src="img/sat-expend-ratio.png" alt="Two scatterplots of pupil-to-teacher ratio against expenditure per pupil and against percentage of SAT takers, with Utah and California labelled.">
+  <figcaption>Pupil-to-teacher ratio against expenditure per pupil (left) and percentage of SAT takers (right).</figcaption>
+</figure>`,
     parts: [
       { l: "a", t: `According to the output, Utah has the largest Cook's distance. Report its Cook's distance, leverage and standardised residual, and explain why this state is influential.` },
       { l: "b", t: `Refitting the model without Utah gives
